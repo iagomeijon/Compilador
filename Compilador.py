@@ -51,7 +51,7 @@ PALAVRAS_RESERVADA = ["ATEH","BIT","DE","ENQUANTO","ESCREVA","FIM","FUNCAO","INI
                         "REAL","RECEBA","SE","SENAO","VAR","VET"]
 COLUNA = 0
 LINHA = 0
-# ESTADO INICIAL Q0, ELE E A COMAND ( TEM PRINT)
+# ESTADO INICIAL Q0, ELE E A COMAND ( TEM PRINT )
 def q0(texto):
     global COLUNA
     global LINHA
@@ -123,7 +123,7 @@ def q0(texto):
             continue
         except:
             return
-# ESTADO Q1 QUE VAI TRATAR OS NUMEROS ( TEM PRINT)
+# ESTADO Q1 QUE VAI TRATAR OS NUMEROS ( TEM PRINT )
 def q1(texto, tamanho):
     global COLUNA
     global LINHA
@@ -168,7 +168,7 @@ def q1(texto, tamanho):
     # CASO EM QUE O ULTIMO CARACTER DA LINHA FAZ PARTE DO TOKEN
     newToken = Token("num", token)
     TOKENS.append(newToken)
-# ESTADO Q2 QUE VAI TRATAR NUMEROS REAIS ( Q1 CHAMA Q2 ,QuaNDO ENCONTRA UMA VIRGULA, O NUEMRO DEIXA DE SER INTEIRO E VIRA REAL) ( TEM PRINT)
+# ESTADO Q2 QUE VAI TRATAR NUMEROS REAIS ( Q1 CHAMA Q2 ,QUANDO ENCONTRA UMA VIRGULA, O NUEMRO DEIXA DE SER INTEIRO E VIRA REAL) ( TEM PRINT)
 def q2(texto, tamanho, token):
     global LEXICA_CORRETA
     global TOKENS
@@ -331,11 +331,15 @@ def q7(texto):
         else:
             # CASO EM QUE O CARACTER E UM OPERADOR LOGICO
             # CRIANDO O TOKEN E ADCIONANDO
-            newToken = Token(caracter, caracter)
-            TOKENS.append(newToken)
+            if caracter == "|":
+                newToken = Token("or", caracter)
+                TOKENS.append(newToken)
+            else:
+                newToken = Token(caracter, caracter)
+                TOKENS.append(newToken)
         # ANDANDO NA LINHA
         COLUNA += 1
-# ESTADO Q8 VAI TRATAR OS IDENTIFICADORES DA LIGUAGUEM (TEM PRINT)
+# ESTADO Q8 VAI TRATAR OS IDENTIFICADORES DA LIGUAGUEM ( TEM PRINT )
 def q8(texto, tamanho):
     global COLUNA
     global LINHA
@@ -383,11 +387,15 @@ def q9(texto):
         if caracter not in SIMBOLOS_LINGUAGEM:
             return
         else:
-            newToken = Token(caracter, caracter)
-            TOKENS.append(newToken)
+            if caracter == ".":
+                newToken = Token("ponto",".")
+                TOKENS.append(newToken)
+            else:
+                newToken = Token(caracter, caracter)
+                TOKENS.append(newToken)
         # ANDANDO NA LINHA
         COLUNA += 1
-# ESTADO Q10 VAI GERAR AS STRINGS (TEM PRINT)
+# ESTADO Q10 VAI GERAR AS STRINGS ( TEM PRINT )
 def q10(texto, tamanho):
     global TOKENS
     global LEXICA_CORRETA
