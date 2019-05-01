@@ -28,8 +28,13 @@ class Token:
 LEXICA_CORRETA = True
 # LISTA DE TOKENS CRIADOS
 TOKENS = []
-# TAMANHO MAXIMO NUMERO
-MAX_TAMANHO = 512
+
+# TAMANHO MAXIMO TOKENS
+MAX_TAMANHO_INTEIRO = 512
+MAX_TAMANHO_REAL = 512
+MAX_TAMANHO_IDNTIFICADOR = 512
+MAX_TAMANHO_STRING = 512
+
 # LISTA DE CARACTER VALIDOS DENTRO DE UM NUMERO
 CARACTER_NUMEROS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 # LISTA DE CARACTER DO ALFABETO
@@ -51,6 +56,7 @@ PALAVRAS_RESERVADA = ["ATEH","BIT","DE","ENQUANTO","ESCREVA","FIM","FUNCAO","INI
                         "REAL","RECEBA","SE","SENAO","VAR","VET"]
 COLUNA = 0
 LINHA = 0
+
 # ESTADO INICIAL Q0, ELE E A COMAND ( TEM PRINT )
 def q0(texto):
     global COLUNA
@@ -127,13 +133,13 @@ def q0(texto):
 def q1(texto, tamanho):
     global COLUNA
     global LINHA
+    global LEXICA_CORRETA
+    global TOKENS
     try:
         textoDaLinha = texto[LINHA]
     except:
         return
     token = ""
-    global LEXICA_CORRETA
-    global TOKENS
     while COLUNA < len(textoDaLinha):
         caracter = textoDaLinha[COLUNA]
         # IF QUE MARCA UM ERRO POIS TEMOS UMA LETRA JUNTO COM UM NUMERO
@@ -159,7 +165,7 @@ def q1(texto, tamanho):
         # COMO O CARACTER NAO E UM FINALIZADOR ENTAO AUMENTO O TAMANHO DO NUMERO
         tamanho += 1
         # VERIFICADO SE O TAMNHO DO NUMERO NAO PASSOU 512 CARACTER
-        if tamanho > MAX_TAMANHO:
+        if tamanho > MAX_TAMANHO_INTEIRO:
             printer(LINHA + 1, COLUNA)
             LEXICA_CORRETA = False
             return
@@ -175,7 +181,7 @@ def q2(texto, tamanho, token):
     global COLUNA
     global LINHA
     # VERIFICADO SE O TAMNHO DO NUMERO NAO PASSOU 512 CARACTER, PODE TER ESTOURADO O TAMANHO COM A VIRGULA E Q1 NAO VERIFICA
-    if tamanho > MAX_TAMANHO:
+    if tamanho > MAX_TAMANHO_REAL:
         # ERRO E NA VIRGULA Q1 PASSA PARA Q2 A COLUNA DEPOIS DA VIRGULA
         printer(LINHA + 1, COLUNA - 1)
         LEXICA_CORRETA = False
@@ -199,7 +205,7 @@ def q2(texto, tamanho, token):
         token = token + caracter
         # COMO O CARACTER NAO E UM FINALIZADOR ENTAO AUMENTO O TAMANHO DO NUMERO
         tamanho += 1
-        if tamanho > MAX_TAMANHO:
+        if tamanho > MAX_TAMANHO_REAL:
             printer(LINHA + 1, COLUNA)
             LEXICA_CORRETA = False
             return
@@ -363,7 +369,7 @@ def q8(texto, tamanho):
         # COMO O CARACTER NAO E UM FINALIZADOR ENTAO AUMENTO O TAMANHO DO NUMERO
         tamanho += 1
         # VERIFICADO SE O TAMANHO DA STRING NAO PASSOU 512 CARACTER
-        if tamanho > MAX_TAMANHO:
+        if tamanho > MAX_TAMANHO_IDNTIFICADOR:
             printer(LINHA + 1, COLUNA)
             LEXICA_CORRETA = False
             return
@@ -421,7 +427,7 @@ def q10(texto, tamanho):
             # COMO O CARACTER NAO E UM FINALIZADOR ENTAO AUMENTO O TAMANHO DO NUMERO
             tamanho += 1
             # VERIFICADO SE O TAMANHO DA STRING NAO PASSOU 512 CARACTER
-            if tamanho > MAX_TAMANHO:
+            if tamanho > MAX_TAMANHO_STRING:
                 if caracterAnterior == '\n':
                     printer(LINHA, len(linhaAnterior))
                     LEXICA_CORRETA = False
@@ -474,13 +480,8 @@ def q11(texto):
 #PRINTER É APENAS O PRINT DE PYTHON2
 def printer(linha, coluna):
     print linha , coluna
-#VAI CRIAR OS TOKENS ESPECIFICOS PARA AS PALAVARS REC ERVADAS DA LINGUAGEM
+#VAI CRIAR OS TOKENS ESPECIFICOS PARA AS PALAVARS RESERVADAS DA LINGUAGEM
 def tokenCriator(token):
-    #CASO SEJA UM TOKEN DE TIPO
-    if token == "BIT" or token == "INTEIRO" or token == "REAL" or  token =="NULO":
-        newToken = Token("tipo", token)
-        TOKENS.append(newToken)
-        return
     #OUTROS TOKENS RESERVADOS
     newToken = Token(token.lower(),token)
     TOKENS.append(newToken)
@@ -507,6 +508,7 @@ def processadorLinhas(str):
             linha = ""
     # PEGANDO A ULTIMA LINHA QUE NAO POSSUI A QUEBRA
     linhas.append(linha)
+    # REMOVENDO TODAS AS LINHAS VAZIAS
     val_remove = ""
     while val_remove in linhas:
         try:
