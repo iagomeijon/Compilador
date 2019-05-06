@@ -1,7 +1,13 @@
 ######## INICIO DO BLOCO DE DECLARACAO DE VAIRAVEIS ##########
+
+#DECLARAÇÃO TIPOS DA LINGUAGUEM
 TIPO -> bit .
 TIPO -> inteiro .
 TIPO -> real .
+
+#DECLARAÇÃO DOS TIPO DE NUMEROS
+NUM -> numero_inteiro .
+NUM -> numero_real .
 
 CONCATER ID: GERA UMA CONCATENAÇÃO DE ID ( 1 OU MAIS )
     CONCATENAR_ID -> id ; CONCATENAR_ID .

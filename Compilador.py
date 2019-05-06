@@ -157,7 +157,7 @@ def q1(texto, tamanho):
         # NO MEIO DO NUMERO TEM ALGUM SIMBOLO QUE NAO E UMA LETRA, ENTAO MARCA O FINAL DE UM NUMERO
         if caracter not in CARACTER_NUMEROS:
             # CRIANDO O TOKEN E ADCIONANDO
-            newToken = Token("num", token)
+            newToken = Token("numero_inteiro", token)
             TOKENS.append(newToken)
             return
         # ADCIONO O CARACTER QUE AQUI TENHO CERTEZA QUE E UM NUMERO
@@ -172,7 +172,7 @@ def q1(texto, tamanho):
         # ANDANDO NA LINHA
         COLUNA += 1
     # CASO EM QUE O ULTIMO CARACTER DA LINHA FAZ PARTE DO TOKEN
-    newToken = Token("num", token)
+    newToken = Token("numero_inteiro", token)
     TOKENS.append(newToken)
 # ESTADO Q2 QUE VAI TRATAR NUMEROS REAIS ( Q1 CHAMA Q2 ,QUANDO ENCONTRA UMA VIRGULA, O NUEMRO DEIXA DE SER INTEIRO E VIRA REAL) ( TEM PRINT)
 def q2(texto, tamanho, token):
@@ -198,7 +198,7 @@ def q2(texto, tamanho, token):
         # NO MEIO  TEM ALGUM SIMBOLO QUE  MARCA O FINAL DO NUMERO REAL
         if caracter not in CARACTER_NUMEROS:
             # CRIANDO O TOKEN E ADCIONANDO
-            newToken = Token("num", token)
+            newToken = Token("numero_real", token)
             TOKENS.append(newToken)
             return
         # SE ELE NAO E UM FINALIZADOR EU ADCIONO ELE NO TOKEN
@@ -212,7 +212,7 @@ def q2(texto, tamanho, token):
         # ANDANDO NA LINHA
         COLUNA += 1
     # CASO EM QUE O ULTIMO CARACTER DA LINHA FAZ PARTE DO TOKEN
-    newToken = Token("num", token)
+    newToken = Token("numero_real", token)
     TOKENS.append(newToken)
 # ESTADO Q3 QUE VAI TRATAR OPERADORES ALGEBRICOS
 def q3(texto):

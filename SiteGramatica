@@ -1,7 +1,13 @@
 ######## INICIO DO BLOCO DE DECLARACAO DE VAIRAVEIS ##########
+
+#DECLARAÇÃO TIPOS DA LINGUAGUEM
 TIPO -> bit .
 TIPO -> inteiro .
 TIPO -> real .
+
+#DECLARAÇÃO DOS TIPO DE NUMEROS
+NUM -> numero_inteiro .
+NUM -> numero_real .
 
 CONCATER ID: GERA UMA CONCATENAÇÃO DE ID ( 1 OU MAIS )
     CONCATENAR_ID -> id ; CONCATENAR_ID .
@@ -11,7 +17,7 @@ DECLARAÇÃO DE UMA VARIAVEL (  1 OU MAIS) :
     DECLARACAO_ID -> TIPO : CONCATENAR_ID  .
 
 DECLARAÇÃO DE UM VETOR: (1 )
-    DECLARACAO_VET -> vet TIPO : id num .
+    DECLARACAO_VET -> vet TIPO : id NUM .
 
 DECLARAÇÃO DE VARIAVEIS (NADA , 1 OU MAIS):
     VARIAVEL -> DECLARACAO_ID .
@@ -46,8 +52,8 @@ EXPRESSÃO ARITMETRICA (1 ou MAIS):
     EXP_FINAL -> - id .
     EXP_FINAL -> ( EXP ) .
     EXP_FINAL -> - ( EXP ) .
-    EXP_FINAL -> num .
-    EXP_FINAL -> - num .
+    EXP_FINAL -> NUM .
+    EXP_FINAL -> - NUM .
     EXP_FINAL -> id [ EXP ] .
     EXP_FINAL -> - id [ EXP ] .
 
