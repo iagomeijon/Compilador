@@ -52,7 +52,7 @@ SIMBOLOS_LINGUAGEM = [':', ';', '.']
 # CARACTERES IGNORADOS
 IGNORE = [9, 32, 10]
 #TODAS AS PALAVAS RECERVADAS
-PALAVRAS_RESERVADA = ["ATEH","BIT","DE","ENQUANTO","ESCREVA","FIM","FUNCAO","INICIO","INTEIRO","LEIA","NULO","PARA","PARE",
+PALAVRAS_RESERVADA = ["ATEH","DE","ENQUANTO","ESCREVA","FIM","FUNCAO","INICIO","INTEIRO","LEIA","NULO","PARA","PARE",
                         "REAL","RECEBA","SE","SENAO","VAR","VET"]
 COLUNA = 0
 LINHA = 0
@@ -488,6 +488,87 @@ def tokenCriator(token):
     return
 ############################################
 # ANALIZADOR LEXICO - FIM
+############################################
+############################################
+# ANALIZADOR SINTATICO - INICIO
+############################################
+def analiseSintatica(tokens, tabela):
+    #apontador para a entrada corrente
+    next = 0
+    #inicializando a pilha
+    pilha = [0]
+    while (True):
+        #pegando a entrada
+        entrada = tokens[next]
+        #olhando o topo da pilha
+        topo = pilha.pop()
+        pilha.append(topo)
+        try:
+            #pegando a linha da tabela ( o estado )
+            linha = tabela[topo]
+            #pegando a acao a ser realizada para a entrada na linha da tabela (estado) [indexando a tabela]
+            action = linha[entrada.tipo]
+            #caso em que é feito o shift
+            if action[0] == "s":
+                #empilha a entrada , o proximo estado e move para frente o ponteiro da entrada
+                pilha.append(entrada)
+                pilha.append(action[1])
+                next += 1
+            # caso em que é feito a redução
+            if action[0] == "r":
+                #pega a quantidade de itens quedeve ser retirado da pilha
+                vezes = action[2].count(" ") + 1
+                #retirnado os itens da pilha
+                for i in range(vezes * 2):
+                    pilha.pop()
+                #olhando o topo da pilha , para saber o desvio
+                topo = pilha.pop()
+                pilha.append(topo)
+                #pegando a linha que informa o desvio
+                linha = tabela[topo]
+                #pegando o desvio
+                desvio = linha[action[1]]
+                if desvio[0] == "d":
+                #empilhando oque foi reduzido e o numero do estado que foi desviado
+                    pilha.append(action[1])
+                    pilha.append(desvio[1])
+            #caso em que a entrada é aceita
+            if action[0] == "acc":
+                return True
+        except:
+            #caso em que foi indexado alguma coisa que não existe , logo é um erro
+            return False
+
+def preencherTable():
+    #EXEMPLO DE COMO PREENCHER
+    table = []
+    q0 = {"id": ["s", 5],"(": ["s", 4],"E": ["d", 1],"T": ["d", 2],"F": ["d", 3]}
+    table.append(q0)
+    q1 = {"+": ["s", 6],"$": ["acc"]}
+    table.append(q1)
+    q2 = {"+": ["r", "E", "T"],"*": ["s", 7],")": ["r", "E", "T"],"$": ["r", "E", "T"]}
+    table.append(q2)
+    q3 = {"+": ["r", "T", "F"],"*": ["r", "T", "F"],")": ["r", "T", "F"],"$": ["r", "T", "F"],}
+    table.append(q3)
+    q4 = {"id": ["s", 5],"(": ["s", 4],"E": ["d", 8],"T": ["d", 2],"F": ["d", 3]}
+    table.append(q4)
+    q5 = { "+": ["r", "F", "id"],"*": ["r", "F", "id"],")": ["r", "F", "id"],"$": ["r", "F", "id"]}
+    table.append(q5)
+    q6 = {"id": ["s", 5],"(": ["s", 4],"T": ["d", 9], "F": ["d", 3]}
+    table.append(q6)
+    q7 = {"id": ["s", 5], "(": ["s", 4],"F": ["d", 10]}
+    table.append(q7)
+    q8 = {"+": ["s", 6],")": ["s", 11]}
+    table.append(q8)
+    q9 = {"+": ["r", "E", "E + T"],"*": ["s", 7],")": ["r", "E", "E + T"],"$": ["r", "E", "E + T"]}
+    table.append(q9)
+    q10 = { "+": ["r", "T", "T * F"],"*": ["r", "E", "E + T"], ")": ["r", "E", "E + T"],"$": ["r", "E", "E + T"]}
+    table.append(q10)
+    q11 = { "+": ["r", "F", "( E )"],"*": ["r", "F", "( E )"], ")": ["r", "E", "( E )"],"$": ["r", "E", "( E )"]}
+    table.append(q11)
+    return table
+############################################
+# ANALIZADOR SINTATICO - FIM
 ############################################
 def processadorLinhas(str):
     linhas = []
