@@ -492,7 +492,7 @@ def tokenCriator(token):
 ############################################
 # ANALIZADOR SINTATICO - INICIO
 ############################################
-def analiseSintatica(tokens, tabela):
+def analisadorSintatico(tokens, tabela):
     #apontador para a entrada corrente
     next = 0
     #inicializando a pilha
@@ -542,30 +542,48 @@ def analiseSintatica(tokens, tabela):
 def preencherTable():
     #EXEMPLO DE COMO PREENCHER
     table = []
-    q0 = {"id": ["s", 5],"(": ["s", 4],"E": ["d", 1],"T": ["d", 2],"F": ["d", 3]}
+    q0 = {"var": ["r", "BLOCO_VARIAVEIS", ""],"inicio": ["r", "BLOCO_VARIAVEIS", ""],"funcao": ["r", "BLOCO_VARIAVEIS", ""],"vet": ["s", 7],"inteiro": ["s", 8],"real": ["s", 9], "PROGRAMA": ["d", 1],"BLOCO_VARIAVEIS": ["d", 2],"TIPO": ["d", 6],"VARIAVEL": ["d", 4],"DECLARACAO_ID": ["d", 4],"DECLARACAO_VET": ["d", 5]}
     table.append(q0)
-    q1 = {"+": ["s", 6],"$": ["acc"]}
+    q1 = { "$": ["acc"]}
     table.append(q1)
-    q2 = {"+": ["r", "E", "T"],"*": ["s", 7],")": ["r", "E", "T"],"$": ["r", "E", "T"]}
+    q2 = {"var": ["r", "BLOCO_DEC_FUNC", ""],"funcao": ["s", 13],"BLOCO_PROTOTIPO_DEC_FUNC": ["d", 10],"BLOCO_DEC_FUNC": ["d", 12],"DEC_FUNCAO": ["d", 14],"PROT_FUNC": ["d", 11],}
     table.append(q2)
-    q3 = {"+": ["r", "T", "F"],"*": ["r", "T", "F"],")": ["r", "T", "F"],"$": ["r", "T", "F"],}
+    q3 = {"ponto": ["s", 15]}
     table.append(q3)
-    q4 = {"id": ["s", 5],"(": ["s", 4],"E": ["d", 8],"T": ["d", 2],"F": ["d", 3]}
+    q4 = {"ponto": ["r", "VARIAVEL", "DECLARACAO_ID"]}
     table.append(q4)
-    q5 = { "+": ["r", "F", "id"],"*": ["r", "F", "id"],")": ["r", "F", "id"],"$": ["r", "F", "id"]}
+    q5 =  {"ponto": ["r", "VARIAVEL", "DECLARACAO_VET"]}
     table.append(q5)
-    q6 = {"id": ["s", 5],"(": ["s", 4],"T": ["d", 9], "F": ["d", 3]}
+    q6 = {":": ["s", 16]}
     table.append(q6)
-    q7 = {"id": ["s", 5], "(": ["s", 4],"F": ["d", 10]}
+    q7 = {"inteiro": ["s", 8],"real": ["s", 9],"TIPO": ["d", 17]}
     table.append(q7)
-    q8 = {"+": ["s", 6],")": ["s", 11]}
+    q8 = {"var": ["r", "TIPO", "inteiro"],"ponto": ["r", "TIPO", "inteiro"],":": ["r", "TIPO", "inteiro"]}
     table.append(q8)
-    q9 = {"+": ["r", "E", "E + T"],"*": ["s", 7],")": ["r", "E", "E + T"],"$": ["r", "E", "E + T"]}
+    q9 = {"var": ["r", "TIPO", "real"],"ponto": ["r", "TIPO", "real"],":": ["r", "TIPO", "real"]}
     table.append(q9)
-    q10 = { "+": ["r", "T", "T * F"],"*": ["r", "E", "E + T"], ")": ["r", "E", "E + T"],"$": ["r", "E", "E + T"]}
+    q10 =  {"var": ["s", 18]}
     table.append(q10)
-    q11 = { "+": ["r", "F", "( E )"],"*": ["r", "F", "( E )"], ")": ["r", "E", "( E )"],"$": ["r", "E", "( E )"]}
+    q11 =  {"var": ["s", 20],"ponto": ["s", 19]}
     table.append(q11)
+    q12 = {"var": ["r", "BLOCO_PROTOTIPO_DEC_FUNC", "BLOCO_DEC_FUNC"]}
+    table.append(q12)
+    q13 = {"id":["s",21]}
+    table.append(q13)
+    q14 = {"var": ["r", "BLOCO_DEC_FUNC", ""],"funcao": ["s", 13],"BLOCO_DEC_FUNC": ["d", 22],"DEC_FUNCAO": ["d", 14],"PROT_FUNC": ["d", 23]}
+    table.append(q14)
+    q15 = {"var": ["r", "BLOCO_VARIAVEIS", ""], "inicio": ["r", "BLOCO_VARIAVEIS", ""],"funcao": ["r", "BLOCO_VARIAVEIS", ""],"vet": ["s", 7],"inteiro": ["s", 8],"real": ["s", 9],"BLOCO_VARIAVEIS": ["d", 24],"TIPO": ["d", 6],"VARIAVEL": ["d", 3],"DECLARACAO_ID": ["d", 4],"DECLARACAO_VET": ["d", 5]}
+    table.append(q15)
+    q16 = {"id": ["s", 26], "CONCATENAR_ID": ["d", 25]}
+    table.append(q16)
+    q17 = {":": ["s", 27]}
+    table.append(q17)
+    q18 = {"var": ["r", "BLOCO_VARIAVEIS", ""],"inicio": ["r", "BLOCO_VARIAVEIS", ""],"funcao": ["r", "BLOCO_VARIAVEIS", ""],"vet": ["s", 7],"inteiro": ["s", 8],"real": ["s", 9],"BLOCO_VARIAVEIS": ["d",28],"TIPO": ["d", 6],"VARIAVEL": ["d", 3],"DECLARACAO_ID": ["d", 4],"DECLARACAO_VET": ["d", 5]}
+    table.append(q18)
+    q19 = {"var": ["r", "BLOCO_DEC_FUNC", ""],"funcao": ["s", 13],"BLOCO_PROTOTIPO_DEC_FUNC": ["d", 29],"BLOCO_DEC_FUNC": ["d", 12],"DEC_FUNCAO": ["d", 14],"PROT_FUNC": ["d", 11]}
+    table.append(q19)
+    q20 = {"var": ["r", "BLOCO_VARIAVEIS", ""],"inicio": ["r", "BLOCO_VARIAVEIS", ""],"funcao": ["r", "BLOCO_VARIAVEIS", ""],"vet": ["s", 7], "inteiro": ["s", 8],"real": ["s", 9],"BLOCO_VARIAVEIS": ["d", 30], "TIPO": ["d", 6],"VARIAVEL": ["d", 3],"DECLARACAO_ID": ["d", 4],"DECLARACAO_VET": ["d", 5]}
+    table.append(q20)
     return table
 ############################################
 # ANALIZADOR SINTATICO - FIM
@@ -581,7 +599,6 @@ def processadorLinhas(str):
         if valor == 9 or valor == 10 or (valor > 31 and valor < 127):
             linha = linha + c
         else:
-            print "ARQUIVO INVALIDO"
             LEXICA_CORRETA = False
             return linhas
         if c == '\n':
@@ -602,12 +619,19 @@ def processadorLinhas(str):
 ############################################
 def main():
     global LEXICA_CORRETA
+    global  TOKENS
     input_str = sys.stdin.read()
     programa = processadorLinhas(input_str)
     if LEXICA_CORRETA:
         q0(programa)
-    if LEXICA_CORRETA:
-        print "OK"
+        newToken = Token("$", "$")
+        TOKENS.append(newToken)
+        tabela = preencherTable()
+        isCorrect = analisadorSintatico(TOKENS,tabela)
+    if isCorrect:
+        print "YES"
+    else:
+        print "NO"
 ############################################
 # FIM MAIN
 ############################################

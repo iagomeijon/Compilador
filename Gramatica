@@ -1,13 +1,12 @@
 ######## INICIO DO BLOCO DE DECLARACAO DE VAIRAVEIS ##########
 
 #DECLARAÇÃO TIPOS DA LINGUAGUEM
-TIPO -> bit .
-TIPO -> inteiro .
-TIPO -> real .
+    TIPO -> inteiro .
+    TIPO -> real .
 
 #DECLARAÇÃO DOS TIPO DE NUMEROS
-NUM -> numero_inteiro .
-NUM -> numero_real .
+    NUM -> numero_inteiro .
+    NUM -> numero_real .
 
 CONCATER ID: GERA UMA CONCATENAÇÃO DE ID ( 1 OU MAIS )
     CONCATENAR_ID -> id ; CONCATENAR_ID .
@@ -17,7 +16,7 @@ DECLARAÇÃO DE UMA VARIAVEL (  1 OU MAIS) :
     DECLARACAO_ID -> TIPO : CONCATENAR_ID .
 
 DECLARAÇÃO DE UM VETOR: (1 )
-    DECLARACAO_VET -> vet TIPO : id NUM .
+    DECLARACAO_VET -> vet TIPO : id numero_inteiro .
 
 DECLARAÇÃO DE VARIAVEIS (NADA , 1 OU MAIS):
     VARIAVEL -> DECLARACAO_ID .
@@ -50,16 +49,14 @@ EXPRESSÃO ARITMETRICA (1 ou MAIS):
     MULTI_DIV_REST -> *.
     MULTI_DIV_REST -> /.
     MULTI_DIV_REST -> %.
-    EXP_FINAL -> id .
-    EXP_FINAL -> - id .
-    EXP_FINAL -> ( EXP ) .
+    EXP_FINAL -> SINAL id .
+    EXP_FINAL -> SINAL NUM .
+    EXP_FINAL -> SINAL id [ EXP ] .
+    EXP_FINAL -> SINAL CHAMADA_FUNC .
+    EXP_FINAL ->  ( EXP ) .
     EXP_FINAL -> - ( EXP ) .
-    EXP_FINAL -> NUM .
-    EXP_FINAL -> - NUM .
-    EXP_FINAL -> id [ EXP ] .
-    EXP_FINAL -> - id [ EXP ] .
-    EXP_FINAL -> CHAMADA_FUNC .
-    EXP_FINAL -> - CHAMADA_FUNC .
+    SINAL -> - .
+    SINAL -> .
 
 ATRIBUIÇÃO (0 OU 1) :
      ATRIBUICAO -> id INDEX <- EXP .
@@ -68,7 +65,6 @@ ATRIBUIÇÃO (0 OU 1) :
 
 EXPRESSAO RELACIONAL SIMPLES ( 1 OU 0):
     EXP_RELACIONAL_SIMPLES -> EXP RELACIONAIS EXP .
-    EXP_RELACIONAL_SIMPLES -> EXP_FINAL .
     RELACIONAIS -> = .
     RELACIONAIS -> < .
     RELACIONAIS -> <= .
