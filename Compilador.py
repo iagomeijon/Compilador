@@ -489,6 +489,7 @@ def tokenCriator(token):
 ############################################
 # ANALIZADOR LEXICO - FIM
 ############################################
+
 ############################################
 # ANALIZADOR SINTATICO - INICIO
 ############################################
@@ -544,918 +545,391 @@ def analisadorSintatico(tokens, tabela):
 def preencherTable():
     #EXEMPLO DE COMO PREENCHER
     table = []
-
-    q0 = {
-        "var": ["r", "BLOCO_VARIAVEIS", "ε"], "inicio": ["r", "BLOCO_VARIAVEIS", "ε"],
-        "funcao": ["r", "BLOCO_VARIAVEIS", "ε"], "vet": ["s", 7], "inteiro": ["s", 8], "real": ["s", 9],
-        "PROGRAMA": ["d", 1], "BLOCO_VARIAVEIS": ["d", 2], "TIPO": ["d", 6], "VARIAVEL": ["d", 3],
-        "DECLARACAO_ID": ["d", 4], "DECLARACAO_VET": ["d", 5]}
+    q0 = {"var": ["r", "BLOCO_VARIAVEIS", "ε"], "inicio": ["r", "BLOCO_VARIAVEIS", "ε"],"funcao": ["r", "BLOCO_VARIAVEIS", "ε"], "vet": ["s", 7], "inteiro": ["s", 8], "real": ["s", 9],"PROGRAMA": ["d", 1], "BLOCO_VARIAVEIS": ["d", 2], "TIPO": ["d", 6], "VARIAVEL": ["d", 3],"DECLARACAO_ID": ["d", 4], "DECLARACAO_VET": ["d", 5]}
     table.append(q0)
-    q1 = {
-        "$": ["acc"]}
+    q1 = {"$": ["acc"]}
     table.append(q1)
-    q2 = {
-        "var": ["r", "BLOCO_DEC_FUNC", "ε"], "funcao": ["s", 13], "BLOCO_PROTOTIPO_DEC_FUNC": ["d", 10],
-        "BLOCO_DEC_FUNC": ["d", 12], "DEC_FUNCAO": ["d", 14], "PROT_FUNC": ["d", 11]}
+    q2 = {"var": ["r", "BLOCO_DEC_FUNC", "ε"], "funcao": ["s", 13], "BLOCO_PROTOTIPO_DEC_FUNC": ["d", 10],"BLOCO_DEC_FUNC": ["d", 12], "DEC_FUNCAO": ["d", 14], "PROT_FUNC": ["d", 11]}
     table.append(q2)
-    q3 = {
-        "ponto": ["s", 15]}
+    q3 = {"ponto": ["s", 15]}
     table.append(q3)
-    q4 = {
-        "ponto": ["r", "VARIAVEL", "DECLARACAO_ID"]}
+    q4 = {"ponto": ["r", "VARIAVEL", "DECLARACAO_ID"]}
     table.append(q4)
-    q5 = {
-        "ponto": ["r", "VARIAVEL", "DECLARACAO_VET"]}
+    q5 = {"ponto": ["r", "VARIAVEL", "DECLARACAO_VET"]}
     table.append(q5)
-    q6 = {
-        ":": ["s", 16]}
+    q6 = {":": ["s", 16]}
     table.append(q6)
-    q7 = {
-        "inteiro": ["s", 8], "real": ["s", 9], "TIPO": ["d", 17]}
+    q7 = {"inteiro": ["s", 8], "real": ["s", 9], "TIPO": ["d", 17]}
     table.append(q7)
-    q8 = {
-        "var": ["r", "TIPO", "inteiro"], "ponto": ["r", "TIPO", "inteiro"], ":": ["r", "TIPO", "inteiro"]}
+    q8 = {"var": ["r", "TIPO", "inteiro"], "ponto": ["r", "TIPO", "inteiro"], ":": ["r", "TIPO", "inteiro"]}
     table.append(q8)
-    q9 = {
-        "var": ["r", "TIPO", "real"], "ponto": ["r", "TIPO", "real"], ":": ["r", "TIPO", "real"]}
+    q9 = {"var": ["r", "TIPO", "real"], "ponto": ["r", "TIPO", "real"], ":": ["r", "TIPO", "real"]}
     table.append(q9)
-    q10 = {
-        "var": ["s", 18]}
+    q10 = {"var": ["s", 18]}
     table.append(q10)
-    q11 = {
-        "var": ["s", 20], "ponto": ["s", 19]}
+    q11 = {"var": ["s", 20], "ponto": ["s", 19]}
     table.append(q11)
-    q12 = {
-        "var": ["r", "BLOCO_PROTOTIPO_DEC_FUNC", "BLOCO_DEC_FUNC"]}
+    q12 = {"var": ["r", "BLOCO_PROTOTIPO_DEC_FUNC", "BLOCO_DEC_FUNC"]}
     table.append(q12)
-    q13 = {
-        "id": ["s", 21]}
+    q13 = {"id": ["s", 21]}
     table.append(q13)
-    q14 = {
-        "var": ["r", "BLOCO_DEC_FUNC", "ε"], "funcao": ["s", 13], "BLOCO_DEC_FUNC": ["d", 22], "DEC_FUNCAO": ["d", 14],
-        "PROT_FUNC": ["d", 23]}
+    q14 = {"var": ["r", "BLOCO_DEC_FUNC", "ε"], "funcao": ["s", 13], "BLOCO_DEC_FUNC": ["d", 22], "DEC_FUNCAO": ["d", 14],"PROT_FUNC": ["d", 23]}
     table.append(q14)
-    q15 = {
-        "var": ["r", "BLOCO_VARIAVEIS", "ε"], "inicio": ["r", "BLOCO_VARIAVEIS", "ε"],
-        "funcao": ["r", "BLOCO_VARIAVEIS", "ε"], "vet": ["s", 7], "inteiro": ["s", 8], "real": ["s", 9],
-        "BLOCO_VARIAVEIS": ["d", 24], "TIPO": ["d", 6], "VARIAVEL": ["d", 3], "DECLARACAO_ID": ["d", 4],
-        "DECLARACAO_VET": ["d", 5]}
+    q15 = {"var": ["r", "BLOCO_VARIAVEIS", "ε"], "inicio": ["r", "BLOCO_VARIAVEIS", "ε"],"funcao": ["r", "BLOCO_VARIAVEIS", "ε"], "vet": ["s", 7], "inteiro": ["s", 8], "real": ["s", 9],"BLOCO_VARIAVEIS": ["d", 24], "TIPO": ["d", 6], "VARIAVEL": ["d", 3], "DECLARACAO_ID": ["d", 4],"DECLARACAO_VET": ["d", 5]}
     table.append(q15)
-    q16 = {
-        "id": ["s", 26], "CONCATENAR_ID": ["d", 25]}
+    q16 = {"id": ["s", 26], "CONCATENAR_ID": ["d", 25]}
     table.append(q16)
-    q17 = {
-        ":": ["s", 27]}
+    q17 = {":": ["s", 27]}
     table.append(q17)
-    q18 = {
-        "var": ["r", "BLOCO_VARIAVEIS", "ε"], "inicio": ["r", "BLOCO_VARIAVEIS", "ε"],
-        "funcao": ["r", "BLOCO_VARIAVEIS", "ε"], "vet": ["s", 7], "inteiro": ["s", 8], "real": ["s", 9],
-        "BLOCO_VARIAVEIS": ["d", 28], "TIPO": ["d", 6], "VARIAVEL": ["d", 3], "DECLARACAO_ID": ["d", 4],
-        "DECLARACAO_VET": ["d", 5]}
+    q18 = {"var": ["r", "BLOCO_VARIAVEIS", "ε"], "inicio": ["r", "BLOCO_VARIAVEIS", "ε"],"funcao": ["r", "BLOCO_VARIAVEIS", "ε"], "vet": ["s", 7], "inteiro": ["s", 8], "real": ["s", 9],"BLOCO_VARIAVEIS": ["d", 28], "TIPO": ["d", 6], "VARIAVEL": ["d", 3], "DECLARACAO_ID": ["d", 4],"DECLARACAO_VET": ["d", 5]}
     table.append(q18)
-    q19 = {
-        "var": ["r", "BLOCO_DEC_FUNC", "ε"], "funcao": ["s", 13], "BLOCO_PROTOTIPO_DEC_FUNC": ["d", 29],
-        "BLOCO_DEC_FUNC": ["d", 12], "DEC_FUNCAO": ["d", 14], "PROT_FUNC": ["d", 11]}
+    q19 = {"var": ["r", "BLOCO_DEC_FUNC", "ε"], "funcao": ["s", 13], "BLOCO_PROTOTIPO_DEC_FUNC": ["d", 29],"BLOCO_DEC_FUNC": ["d", 12], "DEC_FUNCAO": ["d", 14], "PROT_FUNC": ["d", 11]}
     table.append(q19)
-    q20 = {
-        "var": ["r", "BLOCO_VARIAVEIS", "ε"], "inicio": ["r", "BLOCO_VARIAVEIS", "ε"],
-        "funcao": ["r", "BLOCO_VARIAVEIS", "ε"], "vet": ["s", 7], "inteiro": ["s", 8], "real": ["s", 9],
-        "BLOCO_VARIAVEIS": ["d", 30], "TIPO": ["d", 6], "VARIAVEL": ["d", 3], "DECLARACAO_ID": ["d", 4],
-        "DECLARACAO_VET": ["d", 5]}
+    q20 = {"var": ["r", "BLOCO_VARIAVEIS", "ε"], "inicio": ["r", "BLOCO_VARIAVEIS", "ε"],"funcao": ["r", "BLOCO_VARIAVEIS", "ε"], "vet": ["s", 7], "inteiro": ["s", 8], "real": ["s", 9],"BLOCO_VARIAVEIS": ["d", 30], "TIPO": ["d", 6], "VARIAVEL": ["d", 3], "DECLARACAO_ID": ["d", 4],"DECLARACAO_VET": ["d", 5]}
     table.append(q20)
-    q21 = {
-        "(": ["s", 31]}
+    q21 = {"(": ["s", 31]}
     table.append(q21)
-    q22 = {
-        "var": ["r", "BLOCO_DEC_FUNC", "DEC_FUNCAO BLOCO_DEC_FUNC"]}
+    q22 = {"var": ["r", "BLOCO_DEC_FUNC", "DEC_FUNCAO BLOCO_DEC_FUNC"]}
     table.append(q22)
-    q23 = {
-        "var": ["s", 20]}
+    q23 = {"var": ["s", 20]}
     table.append(q23)
-    q24 = {
-        "var": ["r", "BLOCO_VARIAVEIS", "VARIAVEL ponto BLOCO_VARIAVEIS"],
-        "inicio": ["r", "BLOCO_VARIAVEIS", "VARIAVEL ponto BLOCO_VARIAVEIS"],
-        "funcao": ["r", "BLOCO_VARIAVEIS", "VARIAVEL ponto BLOCO_VARIAVEIS"]}
+    q24 = {"var": ["r", "BLOCO_VARIAVEIS", "VARIAVEL ponto BLOCO_VARIAVEIS"],"inicio": ["r", "BLOCO_VARIAVEIS", "VARIAVEL ponto BLOCO_VARIAVEIS"],"funcao": ["r", "BLOCO_VARIAVEIS", "VARIAVEL ponto BLOCO_VARIAVEIS"]}
     table.append(q24)
-    q25 = {
-        "ponto": ["r", "DECLARACAO_ID", "TIPO : CONCATENAR_ID"]}
+    q25 = {"ponto": ["r", "DECLARACAO_ID", "TIPO : CONCATENAR_ID"]}
     table.append(q25)
-    q26 = {
-        "ponto": ["r", "CONCATENAR_ID", "id"], ";": ["s", 32]}
+    q26 = {"ponto": ["r", "CONCATENAR_ID", "id"], ";": ["s", 32]}
     table.append(q26)
-    q27 = {
-        "id": ["s", 33]}
+    q27 = {"id": ["s", 33]}
     table.append(q27)
-    q28 = {
-        "inicio": ["s", 34]}
+    q28 = {"inicio": ["s", 34]}
     table.append(q28)
-    q29 = {
-        "var": ["r", "BLOCO_PROTOTIPO_DEC_FUNC", "PROT_FUNC ponto BLOCO_PROTOTIPO_DEC_FUNC"]}
+    q29 = {"var": ["r", "BLOCO_PROTOTIPO_DEC_FUNC", "PROT_FUNC ponto BLOCO_PROTOTIPO_DEC_FUNC"]}
     table.append(q29)
-    q30 = {
-        "inicio": ["s", 35]}
+    q30 = {"inicio": ["s", 35]}
     table.append(q30)
-    q31 = {
-        ")": ["r", "LISTAR_PARAMETROS", "ε"], "vet": ["s", 39], "inteiro": ["r", "VETOR", "ε"],
-        "real": ["r", "VETOR", "ε"], "LISTAR_PARAMETROS": ["d", 36], "PARAMETROS": ["d", 37], "VETOR": ["d", 38]}
+    q31 = {")": ["r", "LISTAR_PARAMETROS", "ε"], "vet": ["s", 39], "inteiro": ["r", "VETOR", "ε"],"real": ["r", "VETOR", "ε"], "LISTAR_PARAMETROS": ["d", 36], "PARAMETROS": ["d", 37], "VETOR": ["d", 38]}
     table.append(q31)
-    q32 = {
-        "id": ["s", 26], "CONCATENAR_ID": ["d", 40]}
+    q32 = {"id": ["s", 26], "CONCATENAR_ID": ["d", 40]}
     table.append(q32)
-    q33 = {
-        "numero_inteiro": ["s", 41]}
+    q33 = {"numero_inteiro": ["s", 41]}
     table.append(q33)
-    q34 = {
-        "fim": ["r", "BLOCO_COMANDO", "ε"], "id": ["s", 52], "receba": ["s", 58], "escreva": ["s", 57],
-        "leia": ["s", 56], "para": ["s", 55], "enquanto": ["s", 54], "se": ["s", 53], "pare": ["s", 50],
-        "BLOCO_COMANDO": ["d", 42], "RECEBA": ["d", 51], "ESCREVA": ["d", 49], "LEIA": ["d", 48],
-        "BLOCO_ATEH": ["d", 47], "BLOCO_ENQUANTO": ["d", 46], "BLOCO_IF": ["d", 45], "CHAMADA_FUNC": ["d", 43],
-        "ATRIBUICAO": ["d", 44]}
+    q34 = {"fim": ["r", "BLOCO_COMANDO", "ε"], "id": ["s", 52], "receba": ["s", 58], "escreva": ["s", 57],"leia": ["s", 56], "para": ["s", 55], "enquanto": ["s", 54], "se": ["s", 53], "pare": ["s", 50],"BLOCO_COMANDO": ["d", 42], "RECEBA": ["d", 51], "ESCREVA": ["d", 49], "LEIA": ["d", 48],"BLOCO_ATEH": ["d", 47], "BLOCO_ENQUANTO": ["d", 46], "BLOCO_IF": ["d", 45], "CHAMADA_FUNC": ["d", 43],"ATRIBUICAO": ["d", 44]}
     table.append(q34)
-    q35 = {
-        "fim": ["r", "BLOCO_COMANDO", "ε"], "id": ["s", 52], "receba": ["s", 58], "escreva": ["s", 57],
-        "leia": ["s", 56], "para": ["s", 55], "enquanto": ["s", 54], "se": ["s", 53], "pare": ["s", 50],
-        "BLOCO_COMANDO": ["d", 59], "RECEBA": ["d", 51], "ESCREVA": ["d", 49], "LEIA": ["d", 48],
-        "BLOCO_ATEH": ["d", 47], "BLOCO_ENQUANTO": ["d", 46], "BLOCO_IF": ["d", 45], "CHAMADA_FUNC": ["d", 43],
-        "ATRIBUICAO": ["d", 44]}
+    q35 = {"fim": ["r", "BLOCO_COMANDO", "ε"], "id": ["s", 52], "receba": ["s", 58], "escreva": ["s", 57],"leia": ["s", 56], "para": ["s", 55], "enquanto": ["s", 54], "se": ["s", 53], "pare": ["s", 50],"BLOCO_COMANDO": ["d", 59], "RECEBA": ["d", 51], "ESCREVA": ["d", 49], "LEIA": ["d", 48],"BLOCO_ATEH": ["d", 47], "BLOCO_ENQUANTO": ["d", 46], "BLOCO_IF": ["d", 45], "CHAMADA_FUNC": ["d", 43],"ATRIBUICAO": ["d", 44]}
     table.append(q35)
-    q36 = {
-        ")": ["s", 60]}
+    q36 = {")": ["s", 60]}
     table.append(q36)
-    q37 = {
-        ")": ["r", "LISTAR_PARAMETROS", "PARAMETROS"]}
+    q37 = {")": ["r", "LISTAR_PARAMETROS", "PARAMETROS"]}
     table.append(q37)
-    q38 = {
-        "inteiro": ["s", 8], "real": ["s", 9], "TIPO": ["d", 61]}
+    q38 = {"inteiro": ["s", 8], "real": ["s", 9], "TIPO": ["d", 61]}
     table.append(q38)
-    q39 = {
-        "inteiro": ["r", "VETOR", "vet"], "real": ["r", "VETOR", "vet"]}
+    q39 = {"inteiro": ["r", "VETOR", "vet"], "real": ["r", "VETOR", "vet"]}
     table.append(q39)
-    q40 = {
-        "ponto": ["r", "CONCATENAR_ID", "id ; CONCATENAR_ID"]}
+    q40 = {"ponto": ["r", "CONCATENAR_ID", "id ; CONCATENAR_ID"]}
     table.append(q40)
-    q41 = {
-        "ponto": ["r", "DECLARACAO_VET", "vet TIPO : id numero_inteiro"]}
+    q41 = {"ponto": ["r", "DECLARACAO_VET", "vet TIPO : id numero_inteiro"]}
     table.append(q41)
-    q42 = {
-        "fim": ["s", 62]}
+    q42 = {"fim": ["s", 62]}
     table.append(q42)
-    q43 = {
-        "ponto": ["s", 63]}
+    q43 = {"ponto": ["s", 63]}
     table.append(q43)
-    q44 = {
-        "ponto": ["s", 64]}
+    q44 = {"ponto": ["s", 64]}
     table.append(q44)
-    q45 = {
-        "fim": ["r", "BLOCO_COMANDO", "ε"], "id": ["s", 52], "receba": ["s", 58], "escreva": ["s", 57],
-        "leia": ["s", 56], "para": ["s", 55], "enquanto": ["s", 54], "se": ["s", 53], "pare": ["s", 50],
-        "BLOCO_COMANDO": ["d", 65], "RECEBA": ["d", 51], "ESCREVA": ["d", 49], "LEIA": ["d", 48],
-        "BLOCO_ATEH": ["d", 47], "BLOCO_ENQUANTO": ["d", 46], "BLOCO_IF": ["d", 45], "CHAMADA_FUNC": ["d", 43],
-        "ATRIBUICAO": ["d", 44]}
+    q45 = {"fim": ["r", "BLOCO_COMANDO", "ε"], "id": ["s", 52], "receba": ["s", 58], "escreva": ["s", 57],"leia": ["s", 56], "para": ["s", 55], "enquanto": ["s", 54], "se": ["s", 53], "pare": ["s", 50],"BLOCO_COMANDO": ["d", 65], "RECEBA": ["d", 51], "ESCREVA": ["d", 49], "LEIA": ["d", 48],"BLOCO_ATEH": ["d", 47], "BLOCO_ENQUANTO": ["d", 46], "BLOCO_IF": ["d", 45], "CHAMADA_FUNC": ["d", 43],"ATRIBUICAO": ["d", 44]}
     table.append(q45)
-    q46 = {
-        "fim": ["r", "BLOCO_COMANDO", "ε"], "id": ["s", 52], "receba": ["s", 58], "escreva": ["s", 57],
-        "leia": ["s", 56], "para": ["s", 55], "enquanto": ["s", 54], "se": ["s", 53], "pare": ["s", 50],
-        "BLOCO_COMANDO": ["d", 66], "RECEBA": ["d", 51], "ESCREVA": ["d", 49], "LEIA": ["d", 48],
-        "BLOCO_ATEH": ["d", 47], "BLOCO_ENQUANTO": ["d", 46], "BLOCO_IF": ["d", 45], "CHAMADA_FUNC": ["d", 43],
-        "ATRIBUICAO": ["d", 44]}
+    q46 = {"fim": ["r", "BLOCO_COMANDO", "ε"], "id": ["s", 52], "receba": ["s", 58], "escreva": ["s", 57],"leia": ["s", 56], "para": ["s", 55], "enquanto": ["s", 54], "se": ["s", 53], "pare": ["s", 50],"BLOCO_COMANDO": ["d", 66], "RECEBA": ["d", 51], "ESCREVA": ["d", 49], "LEIA": ["d", 48],"BLOCO_ATEH": ["d", 47], "BLOCO_ENQUANTO": ["d", 46], "BLOCO_IF": ["d", 45], "CHAMADA_FUNC": ["d", 43],"ATRIBUICAO": ["d", 44]}
     table.append(q46)
-    q47 = {
-        "fim": ["r", "BLOCO_COMANDO", "ε"], "id": ["s", 52], "receba": ["s", 58], "escreva": ["s", 57],
-        "leia": ["s", 56], "para": ["s", 55], "enquanto": ["s", 54], "se": ["s", 53], "pare": ["s", 50],
-        "BLOCO_COMANDO": ["d", 67], "RECEBA": ["d", 51], "ESCREVA": ["d", 49], "LEIA": ["d", 48],
-        "BLOCO_ATEH": ["d", 47], "BLOCO_ENQUANTO": ["d", 46], "BLOCO_IF": ["d", 45], "CHAMADA_FUNC": ["d", 43],
-        "ATRIBUICAO": ["d", 44]}
+    q47 = {"fim": ["r", "BLOCO_COMANDO", "ε"], "id": ["s", 52], "receba": ["s", 58], "escreva": ["s", 57],"leia": ["s", 56], "para": ["s", 55], "enquanto": ["s", 54], "se": ["s", 53], "pare": ["s", 50],"BLOCO_COMANDO": ["d", 67], "RECEBA": ["d", 51], "ESCREVA": ["d", 49], "LEIA": ["d", 48],"BLOCO_ATEH": ["d", 47], "BLOCO_ENQUANTO": ["d", 46], "BLOCO_IF": ["d", 45], "CHAMADA_FUNC": ["d", 43], "ATRIBUICAO": ["d", 44]}
     table.append(q47)
-    q48 = {
-        "ponto": ["s", 68]}
+    q48 = {"ponto": ["s", 68]}
     table.append(q48)
-    q49 = {
-        "ponto": ["s", 69]}
+    q49 = {"ponto": ["s", 69]}
     table.append(q49)
-    q50 = {
-        "ponto": ["s", 70]}
+    q50 = {"ponto": ["s", 70]}
     table.append(q50)
-    q51 = {
-        "ponto": ["s", 71]}
+    q51 = {"ponto": ["s", 71]}
     table.append(q51)
-    q52 = {
-        "(": ["s", 72], "[": ["s", 74], "<-": ["r", "INDEX", "ε"], "INDEX": ["d", 73]}
+    q52 = {"(": ["s", 72], "[": ["s", 74], "<-": ["r", "INDEX", "ε"], "INDEX": ["d", 73]}
     table.append(q52)
-    q53 = {
-        "id": ["r", "SINAL", "ε"], "(": ["s", 81], "!": ["s", 78], "-": ["s", 87],
-        "numero_inteiro": ["r", "SINAL", "ε"], "numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 82],
-        "EXP_RELACIONAL_TOTAL": ["d", 75], "EXP_RELACIONAL_N2": ["d", 76], "EXP_RELACIONAL_N3": ["d", 77],
-        "EXP_RELACIONAL_FINAL": ["d", 79], "EXP_RELACIONAL_SIMPLES": ["d", 80], "EXP_N2": ["d", 83],
-        "EXP_N3": ["d", 84], "EXP_FINAL": ["d", 85], "SINAL": ["d", 86]}
+    q53 = {"id": ["r", "SINAL", "ε"], "(": ["s", 81], "!": ["s", 78], "-": ["s", 87],"numero_inteiro": ["r", "SINAL", "ε"], "numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 82],"EXP_RELACIONAL_TOTAL": ["d", 75], "EXP_RELACIONAL_N2": ["d", 76], "EXP_RELACIONAL_N3": ["d", 77],"EXP_RELACIONAL_FINAL": ["d", 79], "EXP_RELACIONAL_SIMPLES": ["d", 80], "EXP_N2": ["d", 83],"EXP_N3": ["d", 84], "EXP_FINAL": ["d", 85], "SINAL": ["d", 86]}
     table.append(q53)
-    q54 = {
-        "id": ["r", "SINAL", "ε"], "(": ["s", 81], "!": ["s", 78], "-": ["s", 87],
-        "numero_inteiro": ["r", "SINAL", "ε"], "numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 82],
-        "EXP_RELACIONAL_TOTAL": ["d", 88], "EXP_RELACIONAL_N2": ["d", 76], "EXP_RELACIONAL_N3": ["d", 77],
-        "EXP_RELACIONAL_FINAL": ["d", 79], "EXP_RELACIONAL_SIMPLES": ["d", 80], "EXP_N2": ["d", 83],
-        "EXP_N3": ["d", 84], "EXP_FINAL": ["d", 85], "SINAL": ["d", 86]}
+    q54 = {"id": ["r", "SINAL", "ε"], "(": ["s", 81], "!": ["s", 78], "-": ["s", 87],"numero_inteiro": ["r", "SINAL", "ε"], "numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 82],"EXP_RELACIONAL_TOTAL": ["d", 88], "EXP_RELACIONAL_N2": ["d", 76], "EXP_RELACIONAL_N3": ["d", 77],"EXP_RELACIONAL_FINAL": ["d", 79], "EXP_RELACIONAL_SIMPLES": ["d", 80], "EXP_N2": ["d", 83], "EXP_N3": ["d", 84], "EXP_FINAL": ["d", 85], "SINAL": ["d", 86]}
     table.append(q54)
-    q55 = {
-        "id": ["s", 89]}
+    q55 = {"id": ["s", 89]}
     table.append(q55)
-    q56 = {
-        "id": ["s", 91], "CONCATENAR_LEIA": ["d", 90]}
+    q56 = {"id": ["s", 91], "CONCATENAR_LEIA": ["d", 90]}
     table.append(q56)
-    q57 = {
-        "id": ["r", "SINAL", "ε"], "(": ["s", 95], "string": ["s", 93], "-": ["s", 87],
-        "numero_inteiro": ["r", "SINAL", "ε"], "numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 94],
-        "LISTA_ESCREVA": ["d", 92], "EXP_N2": ["d", 83], "EXP_N3": ["d", 84], "EXP_FINAL": ["d", 85],
-        "SINAL": ["d", 86]}
+    q57 = {"id": ["r", "SINAL", "ε"], "(": ["s", 95], "string": ["s", 93], "-": ["s", 87],"numero_inteiro": ["r", "SINAL", "ε"], "numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 94],"LISTA_ESCREVA": ["d", 92], "EXP_N2": ["d", 83], "EXP_N3": ["d", 84], "EXP_FINAL": ["d", 85],"SINAL": ["d", 86]}
     table.append(q57)
-    q58 = {
-        "ponto": ["r", "RECEBA", "receba"], "(": ["s", 96]}
+    q58 = {"ponto": ["r", "RECEBA", "receba"], "(": ["s", 96]}
     table.append(q58)
-    q59 = {
-        "fim": ["s", 97]}
+    q59 = {"fim": ["s", 97]}
     table.append(q59)
-    q60 = {
-        ":": ["s", 98]}
+    q60 = {":": ["s", 98]}
     table.append(q60)
-    q61 = {
-        ":": ["s", 99]}
+    q61 = {":": ["s", 99]}
     table.append(q61)
-    q62 = {
-        "$": ["r", "PROGRAMA", "BLOCO_VARIAVEIS BLOCO_PROTOTIPO_DEC_FUNC var BLOCO_VARIAVEIS inicio BLOCO_COMANDO fim"]}
+    q62 = {"$": ["r", "PROGRAMA", "BLOCO_VARIAVEIS BLOCO_PROTOTIPO_DEC_FUNC var BLOCO_VARIAVEIS inicio BLOCO_COMANDO fim"]}
     table.append(q62)
-    q63 = {
-        "fim": ["r", "BLOCO_COMANDO", "ε"], "id": ["s", 52], "receba": ["s", 58], "escreva": ["s", 57],
-        "leia": ["s", 56], "para": ["s", 55], "enquanto": ["s", 54], "se": ["s", 53], "pare": ["s", 50],
-        "BLOCO_COMANDO": ["d", 100], "RECEBA": ["d", 51], "ESCREVA": ["d", 49], "LEIA": ["d", 48],
-        "BLOCO_ATEH": ["d", 47], "BLOCO_ENQUANTO": ["d", 46], "BLOCO_IF": ["d", 45], "CHAMADA_FUNC": ["d", 43],
-        "ATRIBUICAO": ["d", 44]}
+    q63 = {"fim": ["r", "BLOCO_COMANDO", "ε"], "id": ["s", 52], "receba": ["s", 58], "escreva": ["s", 57],"leia": ["s", 56], "para": ["s", 55], "enquanto": ["s", 54], "se": ["s", 53], "pare": ["s", 50],"BLOCO_COMANDO": ["d", 100], "RECEBA": ["d", 51], "ESCREVA": ["d", 49], "LEIA": ["d", 48],"BLOCO_ATEH": ["d", 47], "BLOCO_ENQUANTO": ["d", 46], "BLOCO_IF": ["d", 45], "CHAMADA_FUNC": ["d", 43],"ATRIBUICAO": ["d", 44]}
     table.append(q63)
-    q64 = {
-        "fim": ["r", "BLOCO_COMANDO", "ε"], "id": ["s", 52], "receba": ["s", 58], "escreva": ["s", 57],
-        "leia": ["s", 56], "para": ["s", 55], "enquanto": ["s", 54], "se": ["s", 53], "pare": ["s", 50],
-        "BLOCO_COMANDO": ["d", 101], "RECEBA": ["d", 51], "ESCREVA": ["d", 49], "LEIA": ["d", 48],
-        "BLOCO_ATEH": ["d", 47], "BLOCO_ENQUANTO": ["d", 46], "BLOCO_IF": ["d", 45], "CHAMADA_FUNC": ["d", 43],
-        "ATRIBUICAO": ["d", 44]}
+    q64 = {"fim": ["r", "BLOCO_COMANDO", "ε"], "id": ["s", 52], "receba": ["s", 58], "escreva": ["s", 57],"leia": ["s", 56], "para": ["s", 55], "enquanto": ["s", 54], "se": ["s", 53], "pare": ["s", 50],"BLOCO_COMANDO": ["d", 101], "RECEBA": ["d", 51], "ESCREVA": ["d", 49], "LEIA": ["d", 48],"BLOCO_ATEH": ["d", 47], "BLOCO_ENQUANTO": ["d", 46], "BLOCO_IF": ["d", 45], "CHAMADA_FUNC": ["d", 43],"ATRIBUICAO": ["d", 44]}
     table.append(q64)
-    q65 = {
-        "fim": ["r", "BLOCO_COMANDO", "BLOCO_IF BLOCO_COMANDO"]}
+    q65 = {"fim": ["r", "BLOCO_COMANDO", "BLOCO_IF BLOCO_COMANDO"]}
     table.append(q65)
-    q66 = {
-        "fim": ["r", "BLOCO_COMANDO", "BLOCO_ENQUANTO BLOCO_COMANDO"]}
+    q66 = {"fim": ["r", "BLOCO_COMANDO", "BLOCO_ENQUANTO BLOCO_COMANDO"]}
     table.append(q66)
-    q67 = {
-        "fim": ["r", "BLOCO_COMANDO", "BLOCO_ATEH BLOCO_COMANDO"]}
+    q67 = {"fim": ["r", "BLOCO_COMANDO", "BLOCO_ATEH BLOCO_COMANDO"]}
     table.append(q67)
-    q68 = {
-        "fim": ["r", "BLOCO_COMANDO", "ε"], "id": ["s", 52], "receba": ["s", 58], "escreva": ["s", 57],
-        "leia": ["s", 56], "para": ["s", 55], "enquanto": ["s", 54], "se": ["s", 53], "pare": ["s", 50],
-        "BLOCO_COMANDO": ["d", 102], "RECEBA": ["d", 51], "ESCREVA": ["d", 49], "LEIA": ["d", 48],
-        "BLOCO_ATEH": ["d", 47], "BLOCO_ENQUANTO": ["d", 46], "BLOCO_IF": ["d", 45], "CHAMADA_FUNC": ["d", 43],
-        "ATRIBUICAO": ["d", 44]}
+    q68 = {"fim": ["r", "BLOCO_COMANDO", "ε"], "id": ["s", 52], "receba": ["s", 58], "escreva": ["s", 57],"leia": ["s", 56], "para": ["s", 55], "enquanto": ["s", 54], "se": ["s", 53], "pare": ["s", 50],"BLOCO_COMANDO": ["d", 102], "RECEBA": ["d", 51], "ESCREVA": ["d", 49], "LEIA": ["d", 48],"BLOCO_ATEH": ["d", 47], "BLOCO_ENQUANTO": ["d", 46], "BLOCO_IF": ["d", 45], "CHAMADA_FUNC": ["d", 43],"ATRIBUICAO": ["d", 44]}
     table.append(q68)
-    q69 = {
-        "fim": ["r", "BLOCO_COMANDO", "ε"], "id": ["s", 52], "receba": ["s", 58], "escreva": ["s", 57],
-        "leia": ["s", 56], "para": ["s", 55], "enquanto": ["s", 54], "se": ["s", 53], "pare": ["s", 50],
-        "BLOCO_COMANDO": ["d", 103], "RECEBA": ["d", 51], "ESCREVA": ["d", 49], "LEIA": ["d", 48],
-        "BLOCO_ATEH": ["d", 47], "BLOCO_ENQUANTO": ["d", 46], "BLOCO_IF": ["d", 45], "CHAMADA_FUNC": ["d", 43],
-        "ATRIBUICAO": ["d", 44]}
+    q69 = {"fim": ["r", "BLOCO_COMANDO", "ε"], "id": ["s", 52], "receba": ["s", 58], "escreva": ["s", 57],"leia": ["s", 56], "para": ["s", 55], "enquanto": ["s", 54], "se": ["s", 53], "pare": ["s", 50],"BLOCO_COMANDO": ["d", 103], "RECEBA": ["d", 51], "ESCREVA": ["d", 49], "LEIA": ["d", 48],"BLOCO_ATEH": ["d", 47], "BLOCO_ENQUANTO": ["d", 46], "BLOCO_IF": ["d", 45], "CHAMADA_FUNC": ["d", 43],"ATRIBUICAO": ["d", 44]}
     table.append(q69)
-    q70 = {
-        "fim": ["r", "BLOCO_COMANDO", "ε"], "id": ["s", 52], "receba": ["s", 58], "escreva": ["s", 57],
-        "leia": ["s", 56], "para": ["s", 55], "enquanto": ["s", 54], "se": ["s", 53], "pare": ["s", 50],
-        "BLOCO_COMANDO": ["d", 104], "RECEBA": ["d", 51], "ESCREVA": ["d", 49], "LEIA": ["d", 48],
-        "BLOCO_ATEH": ["d", 47], "BLOCO_ENQUANTO": ["d", 46], "BLOCO_IF": ["d", 45], "CHAMADA_FUNC": ["d", 43],
-        "ATRIBUICAO": ["d", 44]}
+    q70 = {"fim": ["r", "BLOCO_COMANDO", "ε"], "id": ["s", 52], "receba": ["s", 58], "escreva": ["s", 57],"leia": ["s", 56], "para": ["s", 55], "enquanto": ["s", 54], "se": ["s", 53], "pare": ["s", 50],"BLOCO_COMANDO": ["d", 104], "RECEBA": ["d", 51], "ESCREVA": ["d", 49], "LEIA": ["d", 48],"BLOCO_ATEH": ["d", 47], "BLOCO_ENQUANTO": ["d", 46], "BLOCO_IF": ["d", 45], "CHAMADA_FUNC": ["d", 43],"ATRIBUICAO": ["d", 44]}
     table.append(q70)
-    q71 = {
-        "fim": ["r", "BLOCO_COMANDO", "ε"], "id": ["s", 52], "receba": ["s", 58], "escreva": ["s", 57],
-        "leia": ["s", 56], "para": ["s", 55], "enquanto": ["s", 54], "se": ["s", 53], "pare": ["s", 50],
-        "BLOCO_COMANDO": ["d", 105], "RECEBA": ["d", 51], "ESCREVA": ["d", 49], "LEIA": ["d", 48],
-        "BLOCO_ATEH": ["d", 47], "BLOCO_ENQUANTO": ["d", 46], "BLOCO_IF": ["d", 45], "CHAMADA_FUNC": ["d", 43],
-        "ATRIBUICAO": ["d", 44]}
+    q71 = {"fim": ["r", "BLOCO_COMANDO", "ε"], "id": ["s", 52], "receba": ["s", 58], "escreva": ["s", 57],"leia": ["s", 56], "para": ["s", 55], "enquanto": ["s", 54], "se": ["s", 53], "pare": ["s", 50],"BLOCO_COMANDO": ["d", 105], "RECEBA": ["d", 51], "ESCREVA": ["d", 49], "LEIA": ["d", 48],"BLOCO_ATEH": ["d", 47], "BLOCO_ENQUANTO": ["d", 46], "BLOCO_IF": ["d", 45], "CHAMADA_FUNC": ["d", 43],"ATRIBUICAO": ["d", 44]}
     table.append(q71)
-    q72 = {
-        "id": ["r", "SINAL", "ε"], "(": ["s", 95], ")": ["r", "LISTAR_PARAMETROS_CHAMADA", "ε"], "-": ["s", 87],
-        "numero_inteiro": ["r", "SINAL", "ε"], "numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 108],
-        "EXP_N2": ["d", 83], "EXP_N3": ["d", 84], "EXP_FINAL": ["d", 85], "SINAL": ["d", 86],
-        "LISTAR_PARAMETROS_CHAMADA": ["d", 106], "CONCATENAR_EXP": ["d", 107]}
+    q72 = {"id": ["r", "SINAL", "ε"], "(": ["s", 95], ")": ["r", "LISTAR_PARAMETROS_CHAMADA", "ε"], "-": ["s", 87],"numero_inteiro": ["r", "SINAL", "ε"], "numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 108],"EXP_N2": ["d", 83], "EXP_N3": ["d", 84], "EXP_FINAL": ["d", 85], "SINAL": ["d", 86],"LISTAR_PARAMETROS_CHAMADA": ["d", 106], "CONCATENAR_EXP": ["d", 107]}
     table.append(q72)
-    q73 = {
-        "<-": ["s", 109]}
+    q73 = {"<-": ["s", 109]}
     table.append(q73)
-    q74 = {
-        "id": ["r", "SINAL", "ε"], "(": ["s", 95], "-": ["s", 87], "numero_inteiro": ["r", "SINAL", "ε"],
-        "numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 110], "EXP_N2": ["d", 83], "EXP_N3": ["d", 84],
-        "EXP_FINAL": ["d", 85], "SINAL": ["d", 86]}
+    q74 = {"id": ["r", "SINAL", "ε"], "(": ["s", 95], "-": ["s", 87], "numero_inteiro": ["r", "SINAL", "ε"],"numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 110], "EXP_N2": ["d", 83], "EXP_N3": ["d", 84],"EXP_FINAL": ["d", 85], "SINAL": ["d", 86]}
     table.append(q74)
-    q75 = {
-        "inicio": ["s", 111]}
+    q75 = {"inicio": ["s", 111]}
     table.append(q75)
-    q76 = {
-        "inicio": ["r", "EXP_RELACIONAL_TOTAL", "EXP_RELACIONAL_N2"],
-        ")": ["r", "EXP_RELACIONAL_TOTAL", "EXP_RELACIONAL_N2"], "or": ["s", 112]}
+    q76 = {"inicio": ["r", "EXP_RELACIONAL_TOTAL", "EXP_RELACIONAL_N2"],")": ["r", "EXP_RELACIONAL_TOTAL", "EXP_RELACIONAL_N2"], "or": ["s", 112]}
     table.append(q76)
-    q77 = {
-        "inicio": ["r", "EXP_RELACIONAL_N2", "EXP_RELACIONAL_N3"], ")": ["r", "EXP_RELACIONAL_N2", "EXP_RELACIONAL_N3"],
-        "or": ["r", "EXP_RELACIONAL_N2", "EXP_RELACIONAL_N3"], "&": ["s", 113]}
+    q77 = {"inicio": ["r", "EXP_RELACIONAL_N2", "EXP_RELACIONAL_N3"], ")": ["r", "EXP_RELACIONAL_N2", "EXP_RELACIONAL_N3"],"or": ["r", "EXP_RELACIONAL_N2", "EXP_RELACIONAL_N3"], "&": ["s", 113]}
     table.append(q77)
-    q78 = {
-        "id": ["r", "SINAL", "ε"], "(": ["s", 81], "-": ["s", 87], "numero_inteiro": ["r", "SINAL", "ε"],
-        "numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 82], "EXP_RELACIONAL_FINAL": ["d", 114],
-        "EXP_RELACIONAL_SIMPLES": ["d", 80], "EXP_N2": ["d", 83], "EXP_N3": ["d", 84], "EXP_FINAL": ["d", 85],
-        "SINAL": ["d", 86]}
+    q78 = {"id": ["r", "SINAL", "ε"], "(": ["s", 81], "-": ["s", 87], "numero_inteiro": ["r", "SINAL", "ε"],"numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 82], "EXP_RELACIONAL_FINAL": ["d", 114],"EXP_RELACIONAL_SIMPLES": ["d", 80], "EXP_N2": ["d", 83], "EXP_N3": ["d", 84], "EXP_FINAL": ["d", 85],"SINAL": ["d", 86]}
     table.append(q78)
-    q79 = {
-        "inicio": ["r", "EXP_RELACIONAL_N3", "EXP_RELACIONAL_FINAL"],
-        ")": ["r", "EXP_RELACIONAL_N3", "EXP_RELACIONAL_FINAL"],
-        "or": ["r", "EXP_RELACIONAL_N3", "EXP_RELACIONAL_FINAL"],
-        "&": ["r", "EXP_RELACIONAL_N3", "EXP_RELACIONAL_FINAL"]}
+    q79 = {"inicio": ["r", "EXP_RELACIONAL_N3", "EXP_RELACIONAL_FINAL"],")": ["r", "EXP_RELACIONAL_N3", "EXP_RELACIONAL_FINAL"],"or": ["r", "EXP_RELACIONAL_N3", "EXP_RELACIONAL_FINAL"],"&": ["r", "EXP_RELACIONAL_N3", "EXP_RELACIONAL_FINAL"]}
     table.append(q79)
-    q80 = {
-        "inicio": ["r", "EXP_RELACIONAL_FINAL", "EXP_RELACIONAL_SIMPLES"],
-        ")": ["r", "EXP_RELACIONAL_FINAL", "EXP_RELACIONAL_SIMPLES"],
-        "or": ["r", "EXP_RELACIONAL_FINAL", "EXP_RELACIONAL_SIMPLES"],
-        "&": ["r", "EXP_RELACIONAL_FINAL", "EXP_RELACIONAL_SIMPLES"]}
+    q80 = {"inicio": ["r", "EXP_RELACIONAL_FINAL", "EXP_RELACIONAL_SIMPLES"],")": ["r", "EXP_RELACIONAL_FINAL", "EXP_RELACIONAL_SIMPLES"],"or": ["r", "EXP_RELACIONAL_FINAL", "EXP_RELACIONAL_SIMPLES"],"&": ["r", "EXP_RELACIONAL_FINAL", "EXP_RELACIONAL_SIMPLES"]}
     table.append(q80)
-    q81 = {
-        "id": ["r", "SINAL", "ε"], "(": ["s", 81], "!": ["s", 78], "-": ["s", 87],
-        "numero_inteiro": ["r", "SINAL", "ε"], "numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 116],
-        "EXP_RELACIONAL_TOTAL": ["d", 115], "EXP_RELACIONAL_N2": ["d", 76], "EXP_RELACIONAL_N3": ["d", 77],
-        "EXP_RELACIONAL_FINAL": ["d", 79], "EXP_RELACIONAL_SIMPLES": ["d", 80], "EXP_N2": ["d", 83],
-        "EXP_N3": ["d", 84], "EXP_FINAL": ["d", 85], "SINAL": ["d", 86]}
+    q81 = {"id": ["r", "SINAL", "ε"], "(": ["s", 81], "!": ["s", 78], "-": ["s", 87],"numero_inteiro": ["r", "SINAL", "ε"], "numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 116],"EXP_RELACIONAL_TOTAL": ["d", 115], "EXP_RELACIONAL_N2": ["d", 76], "EXP_RELACIONAL_N3": ["d", 77],"EXP_RELACIONAL_FINAL": ["d", 79], "EXP_RELACIONAL_SIMPLES": ["d", 80], "EXP_N2": ["d", 83],"EXP_N3": ["d", 84], "EXP_FINAL": ["d", 85], "SINAL": ["d", 86]}
     table.append(q81)
-    q82 = {
-        "=": ["s", 118], "<": ["s", 119], "<=": ["s", 120], ">": ["s", 121], ">=": ["s", 122], "<>": ["s", 123],
-        "RELACIONAIS": ["d", 117]}
+    q82 = {"=": ["s", 118], "<": ["s", 119], "<=": ["s", 120], ">": ["s", 121], ">=": ["s", 122], "<>": ["s", 123],"RELACIONAIS": ["d", 117]}
     table.append(q82)
-    q83 = {
-        "inicio": ["r", "EXP", "EXP_N2"], "ponto": ["r", "EXP", "EXP_N2"], ")": ["r", "EXP", "EXP_N2"],
-        ";": ["r", "EXP", "EXP_N2"], "]": ["r", "EXP", "EXP_N2"], "ateh": ["r", "EXP", "EXP_N2"],
-        "or": ["r", "EXP", "EXP_N2"], "&": ["r", "EXP", "EXP_N2"], "=": ["r", "EXP", "EXP_N2"],
-        "<": ["r", "EXP", "EXP_N2"], "<=": ["r", "EXP", "EXP_N2"], ">": ["r", "EXP", "EXP_N2"],
-        ">=": ["r", "EXP", "EXP_N2"], "<>": ["r", "EXP", "EXP_N2"], "+": ["s", 125], "-": ["s", 126],
-        "SOMA_SUB": ["d", 124]}
+    q83 = {"inicio": ["r", "EXP", "EXP_N2"], "ponto": ["r", "EXP", "EXP_N2"], ")": ["r", "EXP", "EXP_N2"],";": ["r", "EXP", "EXP_N2"], "]": ["r", "EXP", "EXP_N2"], "ateh": ["r", "EXP", "EXP_N2"],"or": ["r", "EXP", "EXP_N2"], "&": ["r", "EXP", "EXP_N2"], "=": ["r", "EXP", "EXP_N2"],"<": ["r", "EXP", "EXP_N2"], "<=": ["r", "EXP", "EXP_N2"], ">": ["r", "EXP", "EXP_N2"],">=": ["r", "EXP", "EXP_N2"], "<>": ["r", "EXP", "EXP_N2"], "+": ["s", 125], "-": ["s", 126],"SOMA_SUB": ["d", 124]}
     table.append(q83)
-    q84 = {
-        "inicio": ["r", "EXP_N2", "EXP_N3"], "ponto": ["r", "EXP_N2", "EXP_N3"], ")": ["r", "EXP_N2", "EXP_N3"],
-        ";": ["r", "EXP_N2", "EXP_N3"], "]": ["r", "EXP_N2", "EXP_N3"], "ateh": ["r", "EXP_N2", "EXP_N3"],
-        "or": ["r", "EXP_N2", "EXP_N3"], "&": ["r", "EXP_N2", "EXP_N3"], "=": ["r", "EXP_N2", "EXP_N3"],
-        "<": ["r", "EXP_N2", "EXP_N3"], "<=": ["r", "EXP_N2", "EXP_N3"], ">": ["r", "EXP_N2", "EXP_N3"],
-        ">=": ["r", "EXP_N2", "EXP_N3"], "<>": ["r", "EXP_N2", "EXP_N3"], "+": ["r", "EXP_N2", "EXP_N3"],
-        "-": ["r", "EXP_N2", "EXP_N3"], "*": ["s", 128], "/": ["s", 129], "%": ["s", 130], "MULTI_DIV_REST": ["d", 127]}
+    q84 = {"inicio": ["r", "EXP_N2", "EXP_N3"], "ponto": ["r", "EXP_N2", "EXP_N3"], ")": ["r", "EXP_N2", "EXP_N3"],";": ["r", "EXP_N2", "EXP_N3"], "]": ["r", "EXP_N2", "EXP_N3"], "ateh": ["r", "EXP_N2", "EXP_N3"],"or": ["r", "EXP_N2", "EXP_N3"], "&": ["r", "EXP_N2", "EXP_N3"], "=": ["r", "EXP_N2", "EXP_N3"],"<": ["r", "EXP_N2", "EXP_N3"], "<=": ["r", "EXP_N2", "EXP_N3"], ">": ["r", "EXP_N2", "EXP_N3"],">=": ["r", "EXP_N2", "EXP_N3"], "<>": ["r", "EXP_N2", "EXP_N3"], "+": ["r", "EXP_N2", "EXP_N3"],"-": ["r", "EXP_N2", "EXP_N3"], "*": ["s", 128], "/": ["s", 129], "%": ["s", 130], "MULTI_DIV_REST": ["d", 127]}
     table.append(q84)
-    q85 = {
-        "inicio": ["r", "EXP_N3", "EXP_FINAL"], "ponto": ["r", "EXP_N3", "EXP_FINAL"],
-        ")": ["r", "EXP_N3", "EXP_FINAL"], ";": ["r", "EXP_N3", "EXP_FINAL"], "]": ["r", "EXP_N3", "EXP_FINAL"],
-        "ateh": ["r", "EXP_N3", "EXP_FINAL"], "or": ["r", "EXP_N3", "EXP_FINAL"], "&": ["r", "EXP_N3", "EXP_FINAL"],
-        "=": ["r", "EXP_N3", "EXP_FINAL"], "<": ["r", "EXP_N3", "EXP_FINAL"], "<=": ["r", "EXP_N3", "EXP_FINAL"],
-        ">": ["r", "EXP_N3", "EXP_FINAL"], ">=": ["r", "EXP_N3", "EXP_FINAL"], "<>": ["r", "EXP_N3", "EXP_FINAL"],
-        "**": ["s", 131], "+": ["r", "EXP_N3", "EXP_FINAL"], "-": ["r", "EXP_N3", "EXP_FINAL"],
-        "*": ["r", "EXP_N3", "EXP_FINAL"], "/": ["r", "EXP_N3", "EXP_FINAL"], "%": ["r", "EXP_N3", "EXP_FINAL"]}
+    q85 = {"inicio": ["r", "EXP_N3", "EXP_FINAL"], "ponto": ["r", "EXP_N3", "EXP_FINAL"],")": ["r", "EXP_N3", "EXP_FINAL"], ";": ["r", "EXP_N3", "EXP_FINAL"], "]": ["r", "EXP_N3", "EXP_FINAL"],"ateh": ["r", "EXP_N3", "EXP_FINAL"], "or": ["r", "EXP_N3", "EXP_FINAL"], "&": ["r", "EXP_N3", "EXP_FINAL"],"=": ["r", "EXP_N3", "EXP_FINAL"], "<": ["r", "EXP_N3", "EXP_FINAL"], "<=": ["r", "EXP_N3", "EXP_FINAL"],">": ["r", "EXP_N3", "EXP_FINAL"], ">=": ["r", "EXP_N3", "EXP_FINAL"], "<>": ["r", "EXP_N3", "EXP_FINAL"],"**": ["s", 131], "+": ["r", "EXP_N3", "EXP_FINAL"], "-": ["r", "EXP_N3", "EXP_FINAL"],"*": ["r", "EXP_N3", "EXP_FINAL"], "/": ["r", "EXP_N3", "EXP_FINAL"], "%": ["r", "EXP_N3", "EXP_FINAL"]}
     table.append(q85)
-    q86 = {
-        "id": ["s", 132], "numero_inteiro": ["s", 135], "numero_real": ["s", 136], "CHAMADA_FUNC": ["d", 134],
-        "NUM": ["d", 133]}
+    q86 = {"id": ["s", 132], "numero_inteiro": ["s", 135], "numero_real": ["s", 136], "CHAMADA_FUNC": ["d", 134],"NUM": ["d", 133]}
     table.append(q86)
-    q87 = {
-        "id": ["r", "SINAL", "-"], "(": ["s", 137], "numero_inteiro": ["r", "SINAL", "-"],
-        "numero_real": ["r", "SINAL", "-"]}
+    q87 = {"id": ["r", "SINAL", "-"], "(": ["s", 137], "numero_inteiro": ["r", "SINAL", "-"],"numero_real": ["r", "SINAL", "-"]}
     table.append(q87)
-    q88 = {
-        "inicio": ["s", 138]}
+    q88 = {"inicio": ["s", 138]}
     table.append(q88)
-    q89 = {
-        "de": ["s", 139]}
+    q89 = {"de": ["s", 139]}
     table.append(q89)
-    q90 = {
-        "ponto": ["r", "LEIA", "leia CONCATENAR_LEIA"]}
+    q90 = {"ponto": ["r", "LEIA", "leia CONCATENAR_LEIA"]}
     table.append(q90)
-    q91 = {
-        "ponto": ["r", "CONCATENAR_LEIA", "id"], ";": ["s", 140], "[": ["s", 141]}
+    q91 = {"ponto": ["r", "CONCATENAR_LEIA", "id"], ";": ["s", 140], "[": ["s", 141]}
     table.append(q91)
-    q92 = {
-        "ponto": ["r", "ESCREVA", "escreva LISTA_ESCREVA"]}
+    q92 = {"ponto": ["r", "ESCREVA", "escreva LISTA_ESCREVA"]}
     table.append(q92)
-    q93 = {
-        "ponto": ["r", "LISTA_ESCREVA", "string"], ";": ["s", 142]}
+    q93 = {"ponto": ["r", "LISTA_ESCREVA", "string"], ";": ["s", 142]}
     table.append(q93)
-    q94 = {
-        "ponto": ["r", "LISTA_ESCREVA", "EXP"], ";": ["s", 143]}
+    q94 = {"ponto": ["r", "LISTA_ESCREVA", "EXP"], ";": ["s", 143]}
     table.append(q94)
-    q95 = {
-        "id": ["r", "SINAL", "ε"], "(": ["s", 95], "-": ["s", 87], "numero_inteiro": ["r", "SINAL", "ε"],
-        "numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 144], "EXP_N2": ["d", 83], "EXP_N3": ["d", 84],
-        "EXP_FINAL": ["d", 85], "SINAL": ["d", 86]}
+    q95 = {"id": ["r", "SINAL", "ε"], "(": ["s", 95], "-": ["s", 87], "numero_inteiro": ["r", "SINAL", "ε"],"numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 144], "EXP_N2": ["d", 83], "EXP_N3": ["d", 84],"EXP_FINAL": ["d", 85], "SINAL": ["d", 86]}
     table.append(q95)
-    q96 = {
-        "id": ["r", "SINAL", "ε"], "(": ["s", 95], "-": ["s", 87], "numero_inteiro": ["r", "SINAL", "ε"],
-        "numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 145], "EXP_N2": ["d", 83], "EXP_N3": ["d", 84],
-        "EXP_FINAL": ["d", 85], "SINAL": ["d", 86]}
+    q96 = {"id": ["r", "SINAL", "ε"], "(": ["s", 95], "-": ["s", 87], "numero_inteiro": ["r", "SINAL", "ε"],"numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 145], "EXP_N2": ["d", 83], "EXP_N3": ["d", 84],"EXP_FINAL": ["d", 85], "SINAL": ["d", 86]}
     table.append(q96)
-    q97 = {
-        "var": ["r", "DEC_FUNCAO", "PROT_FUNC var BLOCO_VARIAVEIS inicio BLOCO_COMANDO fim"],
-        "funcao": ["r", "DEC_FUNCAO", "PROT_FUNC var BLOCO_VARIAVEIS inicio BLOCO_COMANDO fim"]}
+    q97 = {"var": ["r", "DEC_FUNCAO", "PROT_FUNC var BLOCO_VARIAVEIS inicio BLOCO_COMANDO fim"],"funcao": ["r", "DEC_FUNCAO", "PROT_FUNC var BLOCO_VARIAVEIS inicio BLOCO_COMANDO fim"]}
     table.append(q97)
-    q98 = {
-        "nulo": ["s", 148], "inteiro": ["s", 8], "real": ["s", 9], "TIPO_RETORNO": ["d", 146], "TIPO": ["d", 147]}
+    q98 = {"nulo": ["s", 148], "inteiro": ["s", 8], "real": ["s", 9], "TIPO_RETORNO": ["d", 146], "TIPO": ["d", 147]}
     table.append(q98)
-    q99 = {
-        "id": ["s", 149]}
+    q99 = {"id": ["s", 149]}
     table.append(q99)
-    q100 = {
-        "fim": ["r", "BLOCO_COMANDO", "CHAMADA_FUNC ponto BLOCO_COMANDO"]}
+    q100 = {"fim": ["r", "BLOCO_COMANDO", "CHAMADA_FUNC ponto BLOCO_COMANDO"]}
     table.append(q100)
-    q101 = {
-        "fim": ["r", "BLOCO_COMANDO", "ATRIBUICAO ponto BLOCO_COMANDO"]}
+    q101 = {"fim": ["r", "BLOCO_COMANDO", "ATRIBUICAO ponto BLOCO_COMANDO"]}
     table.append(q101)
-    q102 = {
-        "fim": ["r", "BLOCO_COMANDO", "LEIA ponto BLOCO_COMANDO"]}
+    q102 = {"fim": ["r", "BLOCO_COMANDO", "LEIA ponto BLOCO_COMANDO"]}
     table.append(q102)
-    q103 = {
-        "fim": ["r", "BLOCO_COMANDO", "ESCREVA ponto BLOCO_COMANDO"]}
+    q103 = {"fim": ["r", "BLOCO_COMANDO", "ESCREVA ponto BLOCO_COMANDO"]}
     table.append(q103)
-    q104 = {
-        "fim": ["r", "BLOCO_COMANDO", "pare ponto BLOCO_COMANDO"]}
+    q104 = {"fim": ["r", "BLOCO_COMANDO", "pare ponto BLOCO_COMANDO"]}
     table.append(q104)
-    q105 = {
-        "fim": ["r", "BLOCO_COMANDO", "RECEBA ponto BLOCO_COMANDO"]}
+    q105 = {"fim": ["r", "BLOCO_COMANDO", "RECEBA ponto BLOCO_COMANDO"]}
     table.append(q105)
-    q106 = {
-        ")": ["s", 150]}
+    q106 = {")": ["s", 150]}
     table.append(q106)
-    q107 = {
-        ")": ["r", "LISTAR_PARAMETROS_CHAMADA", "CONCATENAR_EXP"]}
+    q107 = {")": ["r", "LISTAR_PARAMETROS_CHAMADA", "CONCATENAR_EXP"]}
     table.append(q107)
-    q108 = {
-        ")": ["r", "CONCATENAR_EXP", "EXP"], ";": ["s", 151]}
+    q108 = {")": ["r", "CONCATENAR_EXP", "EXP"], ";": ["s", 151]}
     table.append(q108)
-    q109 = {
-        "id": ["r", "SINAL", "ε"], "(": ["s", 95], "-": ["s", 87], "numero_inteiro": ["r", "SINAL", "ε"],
-        "numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 152], "EXP_N2": ["d", 83], "EXP_N3": ["d", 84],
-        "EXP_FINAL": ["d", 85], "SINAL": ["d", 86]}
+    q109 = {"id": ["r", "SINAL", "ε"], "(": ["s", 95], "-": ["s", 87], "numero_inteiro": ["r", "SINAL", "ε"],"numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 152], "EXP_N2": ["d", 83], "EXP_N3": ["d", 84],"EXP_FINAL": ["d", 85], "SINAL": ["d", 86]}
     table.append(q109)
-    q110 = {
-        "]": ["s", 153]}
+    q110 = {"]": ["s", 153]}
     table.append(q110)
-    q111 = {
-        "fim": ["r", "BLOCO_COMANDO", "ε"], "id": ["s", 52], "receba": ["s", 58], "escreva": ["s", 57],
-        "leia": ["s", 56], "para": ["s", 55], "enquanto": ["s", 54], "se": ["s", 53], "pare": ["s", 50],
-        "BLOCO_COMANDO": ["d", 154], "RECEBA": ["d", 51], "ESCREVA": ["d", 49], "LEIA": ["d", 48],
-        "BLOCO_ATEH": ["d", 47], "BLOCO_ENQUANTO": ["d", 46], "BLOCO_IF": ["d", 45], "CHAMADA_FUNC": ["d", 43],
-        "ATRIBUICAO": ["d", 44]}
+    q111 = {"fim": ["r", "BLOCO_COMANDO", "ε"], "id": ["s", 52], "receba": ["s", 58], "escreva": ["s", 57],"leia": ["s", 56], "para": ["s", 55], "enquanto": ["s", 54], "se": ["s", 53], "pare": ["s", 50],"BLOCO_COMANDO": ["d", 154], "RECEBA": ["d", 51], "ESCREVA": ["d", 49], "LEIA": ["d", 48],"BLOCO_ATEH": ["d", 47], "BLOCO_ENQUANTO": ["d", 46], "BLOCO_IF": ["d", 45], "CHAMADA_FUNC": ["d", 43],"ATRIBUICAO": ["d", 44]}
     table.append(q111)
-    q112 = {
-        "id": ["r", "SINAL", "ε"], "(": ["s", 81], "!": ["s", 78], "-": ["s", 87],
-        "numero_inteiro": ["r", "SINAL", "ε"], "numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 82],
-        "EXP_RELACIONAL_TOTAL": ["d", 155], "EXP_RELACIONAL_N2": ["d", 76], "EXP_RELACIONAL_N3": ["d", 77],
-        "EXP_RELACIONAL_FINAL": ["d", 79], "EXP_RELACIONAL_SIMPLES": ["d", 80], "EXP_N2": ["d", 83],
-        "EXP_N3": ["d", 84], "EXP_FINAL": ["d", 85], "SINAL": ["d", 86]}
+    q112 = {"id": ["r", "SINAL", "ε"], "(": ["s", 81], "!": ["s", 78], "-": ["s", 87],"numero_inteiro": ["r", "SINAL", "ε"], "numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 82],"EXP_RELACIONAL_TOTAL": ["d", 155], "EXP_RELACIONAL_N2": ["d", 76], "EXP_RELACIONAL_N3": ["d", 77],"EXP_RELACIONAL_FINAL": ["d", 79], "EXP_RELACIONAL_SIMPLES": ["d", 80], "EXP_N2": ["d", 83],"EXP_N3": ["d", 84], "EXP_FINAL": ["d", 85], "SINAL": ["d", 86]}
     table.append(q112)
-    q113 = {
-        "id": ["r", "SINAL", "ε"], "(": ["s", 81], "!": ["s", 78], "-": ["s", 87],
-        "numero_inteiro": ["r", "SINAL", "ε"], "numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 82],
-        "EXP_RELACIONAL_N2": ["d", 156], "EXP_RELACIONAL_N3": ["d", 77], "EXP_RELACIONAL_FINAL": ["d", 79],
-        "EXP_RELACIONAL_SIMPLES": ["d", 80], "EXP_N2": ["d", 83], "EXP_N3": ["d", 84], "EXP_FINAL": ["d", 85],
-        "SINAL": ["d", 86]}
+    q113 = {"id": ["r", "SINAL", "ε"], "(": ["s", 81], "!": ["s", 78], "-": ["s", 87],"numero_inteiro": ["r", "SINAL", "ε"], "numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 82],"EXP_RELACIONAL_N2": ["d", 156], "EXP_RELACIONAL_N3": ["d", 77], "EXP_RELACIONAL_FINAL": ["d", 79],"EXP_RELACIONAL_SIMPLES": ["d", 80], "EXP_N2": ["d", 83], "EXP_N3": ["d", 84], "EXP_FINAL": ["d", 85],"SINAL": ["d", 86]}
     table.append(q113)
-    q114 = {
-        "inicio": ["r", "EXP_RELACIONAL_N3", "! EXP_RELACIONAL_FINAL"],
-        ")": ["r", "EXP_RELACIONAL_N3", "! EXP_RELACIONAL_FINAL"],
-        "or": ["r", "EXP_RELACIONAL_N3", "! EXP_RELACIONAL_FINAL"],
-        "&": ["r", "EXP_RELACIONAL_N3", "! EXP_RELACIONAL_FINAL"]}
+    q114 = {"inicio": ["r", "EXP_RELACIONAL_N3", "! EXP_RELACIONAL_FINAL"],")": ["r", "EXP_RELACIONAL_N3", "! EXP_RELACIONAL_FINAL"],"or": ["r", "EXP_RELACIONAL_N3", "! EXP_RELACIONAL_FINAL"],"&": ["r", "EXP_RELACIONAL_N3", "! EXP_RELACIONAL_FINAL"]}
     table.append(q114)
-    q115 = {
-        ")": ["s", 157]}
+    q115 = {")": ["s", 157]}
     table.append(q115)
-    q116 = {
-        ")": ["s", 158], "=": ["s", 118], "<": ["s", 119], "<=": ["s", 120], ">": ["s", 121], ">=": ["s", 122],
-        "<>": ["s", 123], "RELACIONAIS": ["d", 117]}
+    q116 = {")": ["s", 158], "=": ["s", 118], "<": ["s", 119], "<=": ["s", 120], ">": ["s", 121], ">=": ["s", 122],"<>": ["s", 123], "RELACIONAIS": ["d", 117]}
     table.append(q116)
-    q117 = {
-        "id": ["r", "SINAL", "ε"], "(": ["s", 95], "-": ["s", 87], "numero_inteiro": ["r", "SINAL", "ε"],
-        "numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 159], "EXP_N2": ["d", 83], "EXP_N3": ["d", 84],
-        "EXP_FINAL": ["d", 85], "SINAL": ["d", 86]}
+    q117 = {"id": ["r", "SINAL", "ε"], "(": ["s", 95], "-": ["s", 87], "numero_inteiro": ["r", "SINAL", "ε"],"numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 159], "EXP_N2": ["d", 83], "EXP_N3": ["d", 84],"EXP_FINAL": ["d", 85], "SINAL": ["d", 86]}
     table.append(q117)
-    q118 = {
-        "id": ["r", "RELACIONAIS", "="], "(": ["r", "RELACIONAIS", "="], "-": ["r", "RELACIONAIS", "="],
-        "numero_inteiro": ["r", "RELACIONAIS", "="], "numero_real": ["r", "RELACIONAIS", "="]}
+    q118 = {"id": ["r", "RELACIONAIS", "="], "(": ["r", "RELACIONAIS", "="], "-": ["r", "RELACIONAIS", "="],"numero_inteiro": ["r", "RELACIONAIS", "="], "numero_real": ["r", "RELACIONAIS", "="]}
     table.append(q118)
-    q119 = {
-        "id": ["r", "RELACIONAIS", "<"], "(": ["r", "RELACIONAIS", "<"], "-": ["r", "RELACIONAIS", "<"],
-        "numero_inteiro": ["r", "RELACIONAIS", "<"], "numero_real": ["r", "RELACIONAIS", "<"]}
+    q119 = {"id": ["r", "RELACIONAIS", "<"], "(": ["r", "RELACIONAIS", "<"], "-": ["r", "RELACIONAIS", "<"],"numero_inteiro": ["r", "RELACIONAIS", "<"], "numero_real": ["r", "RELACIONAIS", "<"]}
     table.append(q119)
-    q120 = {
-        "id": ["r", "RELACIONAIS", "<="], "(": ["r", "RELACIONAIS", "<="], "-": ["r", "RELACIONAIS", "<="],
-        "numero_inteiro": ["r", "RELACIONAIS", "<="], "numero_real": ["r", "RELACIONAIS", "<="]}
+    q120 = {"id": ["r", "RELACIONAIS", "<="], "(": ["r", "RELACIONAIS", "<="], "-": ["r", "RELACIONAIS", "<="],"numero_inteiro": ["r", "RELACIONAIS", "<="], "numero_real": ["r", "RELACIONAIS", "<="]}
     table.append(q120)
-    q121 = {
-        "id": ["r", "RELACIONAIS", ">"], "(": ["r", "RELACIONAIS", ">"], "-": ["r", "RELACIONAIS", ">"],
-        "numero_inteiro": ["r", "RELACIONAIS", ">"], "numero_real": ["r", "RELACIONAIS", ">"]}
+    q121 = {"id": ["r", "RELACIONAIS", ">"], "(": ["r", "RELACIONAIS", ">"], "-": ["r", "RELACIONAIS", ">"],"numero_inteiro": ["r", "RELACIONAIS", ">"], "numero_real": ["r", "RELACIONAIS", ">"]}
     table.append(q121)
-    q122 = {
-        "id": ["r", "RELACIONAIS", ">="], "(": ["r", "RELACIONAIS", ">="], "-": ["r", "RELACIONAIS", ">="],
-        "numero_inteiro": ["r", "RELACIONAIS", ">="], "numero_real": ["r", "RELACIONAIS", ">="]}
+    q122 = {"id": ["r", "RELACIONAIS", ">="], "(": ["r", "RELACIONAIS", ">="], "-": ["r", "RELACIONAIS", ">="],"numero_inteiro": ["r", "RELACIONAIS", ">="], "numero_real": ["r", "RELACIONAIS", ">="]}
     table.append(q122)
-    q123 = {
-        "id": ["r", "RELACIONAIS", "<>"], "(": ["r", "RELACIONAIS", "<>"], "-": ["r", "RELACIONAIS", "<>"],
-        "numero_inteiro": ["r", "RELACIONAIS", "<>"], "numero_real": ["r", "RELACIONAIS", "<>"]}
+    q123 = {"id": ["r", "RELACIONAIS", "<>"], "(": ["r", "RELACIONAIS", "<>"], "-": ["r", "RELACIONAIS", "<>"],"numero_inteiro": ["r", "RELACIONAIS", "<>"], "numero_real": ["r", "RELACIONAIS", "<>"]}
     table.append(q123)
-    q124 = {
-        "id": ["r", "SINAL", "ε"], "(": ["s", 95], "-": ["s", 87], "numero_inteiro": ["r", "SINAL", "ε"],
-        "numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 160], "EXP_N2": ["d", 83], "EXP_N3": ["d", 84],
-        "EXP_FINAL": ["d", 85], "SINAL": ["d", 86]}
+    q124 = {"id": ["r", "SINAL", "ε"], "(": ["s", 95], "-": ["s", 87], "numero_inteiro": ["r", "SINAL", "ε"],"numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 160], "EXP_N2": ["d", 83], "EXP_N3": ["d", 84],"EXP_FINAL": ["d", 85], "SINAL": ["d", 86]}
     table.append(q124)
-    q125 = {
-        "id": ["r", "SOMA_SUB", "+"], "(": ["r", "SOMA_SUB", "+"], "-": ["r", "SOMA_SUB", "+"],
-        "numero_inteiro": ["r", "SOMA_SUB", "+"], "numero_real": ["r", "SOMA_SUB", "+"]}
+    q125 = {"id": ["r", "SOMA_SUB", "+"], "(": ["r", "SOMA_SUB", "+"], "-": ["r", "SOMA_SUB", "+"],"numero_inteiro": ["r", "SOMA_SUB", "+"], "numero_real": ["r", "SOMA_SUB", "+"]}
     table.append(q125)
-    q126 = {
-        "id": ["r", "SOMA_SUB", "-"], "(": ["r", "SOMA_SUB", "-"], "-": ["r", "SOMA_SUB", "-"],
-        "numero_inteiro": ["r", "SOMA_SUB", "-"], "numero_real": ["r", "SOMA_SUB", "-"]}
+    q126 = {"id": ["r", "SOMA_SUB", "-"], "(": ["r", "SOMA_SUB", "-"], "-": ["r", "SOMA_SUB", "-"],"numero_inteiro": ["r", "SOMA_SUB", "-"], "numero_real": ["r", "SOMA_SUB", "-"]}
     table.append(q126)
-    q127 = {
-        "id": ["r", "SINAL", "ε"], "(": ["s", 95], "-": ["s", 87], "numero_inteiro": ["r", "SINAL", "ε"],
-        "numero_real": ["r", "SINAL", "ε"], "EXP_N2": ["d", 161], "EXP_N3": ["d", 84], "EXP_FINAL": ["d", 85],
-        "SINAL": ["d", 86]}
+    q127 = {"id": ["r", "SINAL", "ε"], "(": ["s", 95], "-": ["s", 87], "numero_inteiro": ["r", "SINAL", "ε"],"numero_real": ["r", "SINAL", "ε"], "EXP_N2": ["d", 161], "EXP_N3": ["d", 84], "EXP_FINAL": ["d", 85],"SINAL": ["d", 86]}
     table.append(q127)
-    q128 = {
-        "id": ["r", "MULTI_DIV_REST", "*"], "(": ["r", "MULTI_DIV_REST", "*"], "-": ["r", "MULTI_DIV_REST", "*"],
-        "numero_inteiro": ["r", "MULTI_DIV_REST", "*"], "numero_real": ["r", "MULTI_DIV_REST", "*"]}
+    q128 = {"id": ["r", "MULTI_DIV_REST", "*"], "(": ["r", "MULTI_DIV_REST", "*"], "-": ["r", "MULTI_DIV_REST", "*"],"numero_inteiro": ["r", "MULTI_DIV_REST", "*"], "numero_real": ["r", "MULTI_DIV_REST", "*"]}
     table.append(q128)
-    q129 = {
-        "id": ["r", "MULTI_DIV_REST", "/"], "(": ["r", "MULTI_DIV_REST", "/"], "-": ["r", "MULTI_DIV_REST", "/"],
-        "numero_inteiro": ["r", "MULTI_DIV_REST", "/"], "numero_real": ["r", "MULTI_DIV_REST", "/"]}
+    q129 = {"id": ["r", "MULTI_DIV_REST", "/"], "(": ["r", "MULTI_DIV_REST", "/"], "-": ["r", "MULTI_DIV_REST", "/"],"numero_inteiro": ["r", "MULTI_DIV_REST", "/"], "numero_real": ["r", "MULTI_DIV_REST", "/"]}
     table.append(q129)
-    q130 = {
-        "id": ["r", "MULTI_DIV_REST", "%"], "(": ["r", "MULTI_DIV_REST", "%"], "-": ["r", "MULTI_DIV_REST", "%"],
-        "numero_inteiro": ["r", "MULTI_DIV_REST", "%"], "numero_real": ["r", "MULTI_DIV_REST", "%"]}
+    q130 = {"id": ["r", "MULTI_DIV_REST", "%"], "(": ["r", "MULTI_DIV_REST", "%"], "-": ["r", "MULTI_DIV_REST", "%"],"numero_inteiro": ["r", "MULTI_DIV_REST", "%"], "numero_real": ["r", "MULTI_DIV_REST", "%"]}
     table.append(q130)
-    q131 = {
-        "id": ["r", "SINAL", "ε"], "(": ["s", 95], "-": ["s", 87], "numero_inteiro": ["r", "SINAL", "ε"],
-        "numero_real": ["r", "SINAL", "ε"], "EXP_N3": ["d", 162], "EXP_FINAL": ["d", 85], "SINAL": ["d", 86]}
+    q131 = {"id": ["r", "SINAL", "ε"], "(": ["s", 95], "-": ["s", 87], "numero_inteiro": ["r", "SINAL", "ε"],"numero_real": ["r", "SINAL", "ε"], "EXP_N3": ["d", 162], "EXP_FINAL": ["d", 85], "SINAL": ["d", 86]}
     table.append(q131)
-    q132 = {
-        "inicio": ["r", "EXP_FINAL", "SINAL id"], "ponto": ["r", "EXP_FINAL", "SINAL id"], "(": ["s", 72],
-        ")": ["r", "EXP_FINAL", "SINAL id"], ";": ["r", "EXP_FINAL", "SINAL id"], "[": ["s", 163],
-        "]": ["r", "EXP_FINAL", "SINAL id"], "ateh": ["r", "EXP_FINAL", "SINAL id"],
-        "or": ["r", "EXP_FINAL", "SINAL id"], "&": ["r", "EXP_FINAL", "SINAL id"], "=": ["r", "EXP_FINAL", "SINAL id"],
-        "<": ["r", "EXP_FINAL", "SINAL id"], "<=": ["r", "EXP_FINAL", "SINAL id"], ">": ["r", "EXP_FINAL", "SINAL id"],
-        ">=": ["r", "EXP_FINAL", "SINAL id"], "<>": ["r", "EXP_FINAL", "SINAL id"],
-        "**": ["r", "EXP_FINAL", "SINAL id"], "+": ["r", "EXP_FINAL", "SINAL id"], "-": ["r", "EXP_FINAL", "SINAL id"],
-        "*": ["r", "EXP_FINAL", "SINAL id"], "/": ["r", "EXP_FINAL", "SINAL id"], "%": ["r", "EXP_FINAL", "SINAL id"]}
+    q132 = {"inicio": ["r", "EXP_FINAL", "SINAL id"], "ponto": ["r", "EXP_FINAL", "SINAL id"], "(": ["s", 72],")": ["r", "EXP_FINAL", "SINAL id"], ";": ["r", "EXP_FINAL", "SINAL id"], "[": ["s", 163],"]": ["r", "EXP_FINAL", "SINAL id"], "ateh": ["r", "EXP_FINAL", "SINAL id"],"or": ["r", "EXP_FINAL", "SINAL id"], "&": ["r", "EXP_FINAL", "SINAL id"], "=": ["r", "EXP_FINAL", "SINAL id"],"<": ["r", "EXP_FINAL", "SINAL id"], "<=": ["r", "EXP_FINAL", "SINAL id"], ">": ["r", "EXP_FINAL", "SINAL id"],">=": ["r", "EXP_FINAL", "SINAL id"], "<>": ["r", "EXP_FINAL", "SINAL id"],"**": ["r", "EXP_FINAL", "SINAL id"], "+": ["r", "EXP_FINAL", "SINAL id"], "-": ["r", "EXP_FINAL", "SINAL id"],"*": ["r", "EXP_FINAL", "SINAL id"], "/": ["r", "EXP_FINAL", "SINAL id"], "%": ["r", "EXP_FINAL", "SINAL id"]}
     table.append(q132)
-    q133 = {
-        "inicio": ["r", "EXP_FINAL", "SINAL NUM"], "ponto": ["r", "EXP_FINAL", "SINAL NUM"],
-        ")": ["r", "EXP_FINAL", "SINAL NUM"], ";": ["r", "EXP_FINAL", "SINAL NUM"],
-        "]": ["r", "EXP_FINAL", "SINAL NUM"], "ateh": ["r", "EXP_FINAL", "SINAL NUM"],
-        "or": ["r", "EXP_FINAL", "SINAL NUM"], "&": ["r", "EXP_FINAL", "SINAL NUM"],
-        "=": ["r", "EXP_FINAL", "SINAL NUM"], "<": ["r", "EXP_FINAL", "SINAL NUM"],
-        "<=": ["r", "EXP_FINAL", "SINAL NUM"], ">": ["r", "EXP_FINAL", "SINAL NUM"],
-        ">=": ["r", "EXP_FINAL", "SINAL NUM"], "<>": ["r", "EXP_FINAL", "SINAL NUM"],
-        "**": ["r", "EXP_FINAL", "SINAL NUM"], "+": ["r", "EXP_FINAL", "SINAL NUM"],
-        "-": ["r", "EXP_FINAL", "SINAL NUM"], "*": ["r", "EXP_FINAL", "SINAL NUM"],
-        "/": ["r", "EXP_FINAL", "SINAL NUM"], "%": ["r", "EXP_FINAL", "SINAL NUM"]}
+    q133 = {"inicio": ["r", "EXP_FINAL", "SINAL NUM"], "ponto": ["r", "EXP_FINAL", "SINAL NUM"],")": ["r", "EXP_FINAL", "SINAL NUM"], ";": ["r", "EXP_FINAL", "SINAL NUM"],"]": ["r", "EXP_FINAL", "SINAL NUM"], "ateh": ["r", "EXP_FINAL", "SINAL NUM"],"or": ["r", "EXP_FINAL", "SINAL NUM"], "&": ["r", "EXP_FINAL", "SINAL NUM"],"=": ["r", "EXP_FINAL", "SINAL NUM"], "<": ["r", "EXP_FINAL", "SINAL NUM"],"<=": ["r", "EXP_FINAL", "SINAL NUM"], ">": ["r", "EXP_FINAL", "SINAL NUM"],">=": ["r", "EXP_FINAL", "SINAL NUM"], "<>": ["r", "EXP_FINAL", "SINAL NUM"],"**": ["r", "EXP_FINAL", "SINAL NUM"], "+": ["r", "EXP_FINAL", "SINAL NUM"],"-": ["r", "EXP_FINAL", "SINAL NUM"], "*": ["r", "EXP_FINAL", "SINAL NUM"],"/": ["r", "EXP_FINAL", "SINAL NUM"], "%": ["r", "EXP_FINAL", "SINAL NUM"]}
     table.append(q133)
-    q134 = {
-        "inicio": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"], "ponto": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"],
-        ")": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"], ";": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"],
-        "]": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"], "ateh": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"],
-        "or": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"], "&": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"],
-        "=": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"], "<": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"],
-        "<=": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"], ">": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"],
-        ">=": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"], "<>": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"],
-        "**": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"], "+": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"],
-        "-": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"], "*": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"],
-        "/": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"], "%": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"]}
+    q134 = {"inicio": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"], "ponto": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"],")": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"], ";": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"],"]": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"], "ateh": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"],"or": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"], "&": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"],"=": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"], "<": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"],"<=": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"], ">": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"],">=": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"], "<>": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"],"**": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"], "+": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"],"-": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"], "*": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"],"/": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"], "%": ["r", "EXP_FINAL", "SINAL CHAMADA_FUNC"]}
     table.append(q134)
-    q135 = {
-        "inicio": ["r", "NUM", "numero_inteiro"], "ponto": ["r", "NUM", "numero_inteiro"],
-        ")": ["r", "NUM", "numero_inteiro"], ";": ["r", "NUM", "numero_inteiro"], "]": ["r", "NUM", "numero_inteiro"],
-        "ateh": ["r", "NUM", "numero_inteiro"], "or": ["r", "NUM", "numero_inteiro"],
-        "&": ["r", "NUM", "numero_inteiro"], "=": ["r", "NUM", "numero_inteiro"], "<": ["r", "NUM", "numero_inteiro"],
-        "<=": ["r", "NUM", "numero_inteiro"], ">": ["r", "NUM", "numero_inteiro"], ">=": ["r", "NUM", "numero_inteiro"],
-        "<>": ["r", "NUM", "numero_inteiro"], "**": ["r", "NUM", "numero_inteiro"], "+": ["r", "NUM", "numero_inteiro"],
-        "-": ["r", "NUM", "numero_inteiro"], "*": ["r", "NUM", "numero_inteiro"], "/": ["r", "NUM", "numero_inteiro"],
-        "%": ["r", "NUM", "numero_inteiro"]}
+    q135 = {"inicio": ["r", "NUM", "numero_inteiro"], "ponto": ["r", "NUM", "numero_inteiro"],")": ["r", "NUM", "numero_inteiro"], ";": ["r", "NUM", "numero_inteiro"], "]": ["r", "NUM", "numero_inteiro"],"ateh": ["r", "NUM", "numero_inteiro"], "or": ["r", "NUM", "numero_inteiro"],"&": ["r", "NUM", "numero_inteiro"], "=": ["r", "NUM", "numero_inteiro"], "<": ["r", "NUM", "numero_inteiro"],"<=": ["r", "NUM", "numero_inteiro"], ">": ["r", "NUM", "numero_inteiro"], ">=": ["r", "NUM", "numero_inteiro"],"<>": ["r", "NUM", "numero_inteiro"], "**": ["r", "NUM", "numero_inteiro"], "+": ["r", "NUM", "numero_inteiro"],"-": ["r", "NUM", "numero_inteiro"], "*": ["r", "NUM", "numero_inteiro"], "/": ["r", "NUM", "numero_inteiro"],"%": ["r", "NUM", "numero_inteiro"]}
     table.append(q135)
-    q136 = {
-        "inicio": ["r", "NUM", "numero_real"], "ponto": ["r", "NUM", "numero_real"], ")": ["r", "NUM", "numero_real"],
-        ";": ["r", "NUM", "numero_real"], "]": ["r", "NUM", "numero_real"], "ateh": ["r", "NUM", "numero_real"],
-        "or": ["r", "NUM", "numero_real"], "&": ["r", "NUM", "numero_real"], "=": ["r", "NUM", "numero_real"],
-        "<": ["r", "NUM", "numero_real"], "<=": ["r", "NUM", "numero_real"], ">": ["r", "NUM", "numero_real"],
-        ">=": ["r", "NUM", "numero_real"], "<>": ["r", "NUM", "numero_real"], "**": ["r", "NUM", "numero_real"],
-        "+": ["r", "NUM", "numero_real"], "-": ["r", "NUM", "numero_real"], "*": ["r", "NUM", "numero_real"],
-        "/": ["r", "NUM", "numero_real"], "%": ["r", "NUM", "numero_real"]}
+    q136 = {"inicio": ["r", "NUM", "numero_real"], "ponto": ["r", "NUM", "numero_real"], ")": ["r", "NUM", "numero_real"],";": ["r", "NUM", "numero_real"], "]": ["r", "NUM", "numero_real"], "ateh": ["r", "NUM", "numero_real"],"or": ["r", "NUM", "numero_real"], "&": ["r", "NUM", "numero_real"], "=": ["r", "NUM", "numero_real"],"<": ["r", "NUM", "numero_real"], "<=": ["r", "NUM", "numero_real"], ">": ["r", "NUM", "numero_real"],">=": ["r", "NUM", "numero_real"], "<>": ["r", "NUM", "numero_real"], "**": ["r", "NUM", "numero_real"],"+": ["r", "NUM", "numero_real"], "-": ["r", "NUM", "numero_real"], "*": ["r", "NUM", "numero_real"],"/": ["r", "NUM", "numero_real"], "%": ["r", "NUM", "numero_real"]}
     table.append(q136)
-    q137 = {
-        "id": ["r", "SINAL", "ε"], "(": ["s", 95], "-": ["s", 87], "numero_inteiro": ["r", "SINAL", "ε"],
-        "numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 164], "EXP_N2": ["d", 83], "EXP_N3": ["d", 84],
-        "EXP_FINAL": ["d", 85], "SINAL": ["d", 86]}
+    q137 = {"id": ["r", "SINAL", "ε"], "(": ["s", 95], "-": ["s", 87], "numero_inteiro": ["r", "SINAL", "ε"],"numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 164], "EXP_N2": ["d", 83], "EXP_N3": ["d", 84],"EXP_FINAL": ["d", 85], "SINAL": ["d", 86]}
     table.append(q137)
-    q138 = {
-        "fim": ["r", "BLOCO_COMANDO", "ε"], "id": ["s", 52], "receba": ["s", 58], "escreva": ["s", 57],
-        "leia": ["s", 56], "para": ["s", 55], "enquanto": ["s", 54], "se": ["s", 53], "pare": ["s", 50],
-        "BLOCO_COMANDO": ["d", 165], "RECEBA": ["d", 51], "ESCREVA": ["d", 49], "LEIA": ["d", 48],
-        "BLOCO_ATEH": ["d", 47], "BLOCO_ENQUANTO": ["d", 46], "BLOCO_IF": ["d", 45], "CHAMADA_FUNC": ["d", 43],
-        "ATRIBUICAO": ["d", 44]}
+    q138 = {"fim": ["r", "BLOCO_COMANDO", "ε"], "id": ["s", 52], "receba": ["s", 58], "escreva": ["s", 57],"leia": ["s", 56], "para": ["s", 55], "enquanto": ["s", 54], "se": ["s", 53], "pare": ["s", 50],"BLOCO_COMANDO": ["d", 165], "RECEBA": ["d", 51], "ESCREVA": ["d", 49], "LEIA": ["d", 48],"BLOCO_ATEH": ["d", 47], "BLOCO_ENQUANTO": ["d", 46], "BLOCO_IF": ["d", 45], "CHAMADA_FUNC": ["d", 43],"ATRIBUICAO": ["d", 44]}
     table.append(q138)
-    q139 = {
-        "id": ["r", "SINAL", "ε"], "(": ["s", 95], "-": ["s", 87], "numero_inteiro": ["r", "SINAL", "ε"],
-        "numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 166], "EXP_N2": ["d", 83], "EXP_N3": ["d", 84],
-        "EXP_FINAL": ["d", 85], "SINAL": ["d", 86]}
+    q139 = {"id": ["r", "SINAL", "ε"], "(": ["s", 95], "-": ["s", 87], "numero_inteiro": ["r", "SINAL", "ε"],"numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 166], "EXP_N2": ["d", 83], "EXP_N3": ["d", 84],"EXP_FINAL": ["d", 85], "SINAL": ["d", 86]}
     table.append(q139)
-    q140 = {
-        "id": ["s", 91], "CONCATENAR_LEIA": ["d", 167]}
+    q140 = {"id": ["s", 91], "CONCATENAR_LEIA": ["d", 167]}
     table.append(q140)
-    q141 = {
-        "id": ["r", "SINAL", "ε"], "(": ["s", 95], "-": ["s", 87], "numero_inteiro": ["r", "SINAL", "ε"],
-        "numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 168], "EXP_N2": ["d", 83], "EXP_N3": ["d", 84],
-        "EXP_FINAL": ["d", 85], "SINAL": ["d", 86]}
+    q141 = {"id": ["r", "SINAL", "ε"], "(": ["s", 95], "-": ["s", 87], "numero_inteiro": ["r", "SINAL", "ε"],"numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 168], "EXP_N2": ["d", 83], "EXP_N3": ["d", 84],"EXP_FINAL": ["d", 85], "SINAL": ["d", 86]}
     table.append(q141)
-    q142 = {
-        "id": ["r", "SINAL", "ε"], "(": ["s", 95], "string": ["s", 93], "-": ["s", 87],
-        "numero_inteiro": ["r", "SINAL", "ε"], "numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 94],
-        "LISTA_ESCREVA": ["d", 169], "EXP_N2": ["d", 83], "EXP_N3": ["d", 84], "EXP_FINAL": ["d", 85],
-        "SINAL": ["d", 86]}
+    q142 = {"id": ["r", "SINAL", "ε"], "(": ["s", 95], "string": ["s", 93], "-": ["s", 87],"numero_inteiro": ["r", "SINAL", "ε"], "numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 94],"LISTA_ESCREVA": ["d", 169], "EXP_N2": ["d", 83], "EXP_N3": ["d", 84], "EXP_FINAL": ["d", 85],"SINAL": ["d", 86]}
     table.append(q142)
-    q143 = {
-        "id": ["r", "SINAL", "ε"], "(": ["s", 95], "string": ["s", 93], "-": ["s", 87],
-        "numero_inteiro": ["r", "SINAL", "ε"], "numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 94],
-        "LISTA_ESCREVA": ["d", 170], "EXP_N2": ["d", 83], "EXP_N3": ["d", 84], "EXP_FINAL": ["d", 85],
-        "SINAL": ["d", 86]}
+    q143 = {"id": ["r", "SINAL", "ε"], "(": ["s", 95], "string": ["s", 93], "-": ["s", 87],"numero_inteiro": ["r", "SINAL", "ε"], "numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 94],"LISTA_ESCREVA": ["d", 170], "EXP_N2": ["d", 83], "EXP_N3": ["d", 84], "EXP_FINAL": ["d", 85],"SINAL": ["d", 86]}
     table.append(q143)
-    q144 = {
-        ")": ["s", 158]}
+    q144 = {")": ["s", 158]}
     table.append(q144)
-    q145 = {
-        ")": ["s", 171]}
+    q145 = {")": ["s", 171]}
     table.append(q145)
-    q146 = {
-        "var": ["r", "PROT_FUNC", "funcao id ( LISTAR_PARAMETROS ) : TIPO_RETORNO"],
-        "ponto": ["r", "PROT_FUNC", "funcao id ( LISTAR_PARAMETROS ) : TIPO_RETORNO"]}
+    q146 = {"var": ["r", "PROT_FUNC", "funcao id ( LISTAR_PARAMETROS ) : TIPO_RETORNO"],"ponto": ["r", "PROT_FUNC", "funcao id ( LISTAR_PARAMETROS ) : TIPO_RETORNO"]}
     table.append(q146)
-    q147 = {
-        "var": ["r", "TIPO_RETORNO", "TIPO"], "ponto": ["r", "TIPO_RETORNO", "TIPO"]}
+    q147 = {"var": ["r", "TIPO_RETORNO", "TIPO"], "ponto": ["r", "TIPO_RETORNO", "TIPO"]}
     table.append(q147)
-    q148 = {
-        "var": ["r", "TIPO_RETORNO", "nulo"], "ponto": ["r", "TIPO_RETORNO", "nulo"]}
+    q148 = {"var": ["r", "TIPO_RETORNO", "nulo"], "ponto": ["r", "TIPO_RETORNO", "nulo"]}
     table.append(q148)
-    q149 = {
-        ")": ["r", "PARAMETROS", "VETOR TIPO : id"], ";": ["s", 172]}
+    q149 = {")": ["r", "PARAMETROS", "VETOR TIPO : id"], ";": ["s", 172]}
     table.append(q149)
-    q150 = {
-        "inicio": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"],
-        "ponto": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"],
-        ")": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"],
-        ";": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"],
-        "]": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"],
-        "ateh": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"],
-        "or": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"],
-        "&": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"],
-        "=": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"],
-        "<": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"],
-        "<=": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"],
-        ">": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"],
-        ">=": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"],
-        "<>": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"],
-        "**": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"],
-        "+": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"],
-        "-": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"],
-        "*": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"],
-        "/": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"],
-        "%": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"]}
+    q150 = {"inicio": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"],"ponto": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"],")": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"],";": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"],"]": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"],"ateh": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"],"or": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"],"&": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"],"=": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"],"<": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"],"<=": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"],">": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"],">=": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"],"<>": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"],"**": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"],"+": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"],"-": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"],"*": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"],"/": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"],"%": ["r", "CHAMADA_FUNC", "id ( LISTAR_PARAMETROS_CHAMADA )"]}
     table.append(q150)
-    q151 = {
-        "id": ["r", "SINAL", "ε"], "(": ["s", 95], "-": ["s", 87], "numero_inteiro": ["r", "SINAL", "ε"],
-        "numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 108], "EXP_N2": ["d", 83], "EXP_N3": ["d", 84],
-        "EXP_FINAL": ["d", 85], "SINAL": ["d", 86], "CONCATENAR_EXP": ["d", 173]}
+    q151 = {"id": ["r", "SINAL", "ε"], "(": ["s", 95], "-": ["s", 87], "numero_inteiro": ["r", "SINAL", "ε"],"numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 108], "EXP_N2": ["d", 83], "EXP_N3": ["d", 84],"EXP_FINAL": ["d", 85], "SINAL": ["d", 86], "CONCATENAR_EXP": ["d", 173]}
     table.append(q151)
-    q152 = {
-        "ponto": ["r", "ATRIBUICAO", "id INDEX <- EXP"]}
+    q152 = {"ponto": ["r", "ATRIBUICAO", "id INDEX <- EXP"]}
     table.append(q152)
-    q153 = {
-        "<-": ["r", "INDEX", "[ EXP ]"]}
+    q153 = {"<-": ["r", "INDEX", "[ EXP ]"]}
     table.append(q153)
-    q154 = {
-        "fim": ["s", 174]}
+    q154 = {"fim": ["s", 174]}
     table.append(q154)
-    q155 = {
-        "inicio": ["r", "EXP_RELACIONAL_TOTAL", "EXP_RELACIONAL_N2 or EXP_RELACIONAL_TOTAL"],
-        ")": ["r", "EXP_RELACIONAL_TOTAL", "EXP_RELACIONAL_N2 or EXP_RELACIONAL_TOTAL"]}
+    q155 = {"inicio": ["r", "EXP_RELACIONAL_TOTAL", "EXP_RELACIONAL_N2 or EXP_RELACIONAL_TOTAL"],")": ["r", "EXP_RELACIONAL_TOTAL", "EXP_RELACIONAL_N2 or EXP_RELACIONAL_TOTAL"]}
     table.append(q155)
-    q156 = {
-        "inicio": ["r", "EXP_RELACIONAL_N2", "EXP_RELACIONAL_N3 & EXP_RELACIONAL_N2"],
-        ")": ["r", "EXP_RELACIONAL_N2", "EXP_RELACIONAL_N3 & EXP_RELACIONAL_N2"],
-        "or": ["r", "EXP_RELACIONAL_N2", "EXP_RELACIONAL_N3 & EXP_RELACIONAL_N2"]}
+    q156 = {"inicio": ["r", "EXP_RELACIONAL_N2", "EXP_RELACIONAL_N3 & EXP_RELACIONAL_N2"],")": ["r", "EXP_RELACIONAL_N2", "EXP_RELACIONAL_N3 & EXP_RELACIONAL_N2"],"or": ["r", "EXP_RELACIONAL_N2", "EXP_RELACIONAL_N3 & EXP_RELACIONAL_N2"]}
     table.append(q156)
-    q157 = {
-        "inicio": ["r", "EXP_RELACIONAL_FINAL", "( EXP_RELACIONAL_TOTAL )"],
-        ")": ["r", "EXP_RELACIONAL_FINAL", "( EXP_RELACIONAL_TOTAL )"],
-        "or": ["r", "EXP_RELACIONAL_FINAL", "( EXP_RELACIONAL_TOTAL )"],
-        "&": ["r", "EXP_RELACIONAL_FINAL", "( EXP_RELACIONAL_TOTAL )"]}
+    q157 = {"inicio": ["r", "EXP_RELACIONAL_FINAL", "( EXP_RELACIONAL_TOTAL )"],")": ["r", "EXP_RELACIONAL_FINAL", "( EXP_RELACIONAL_TOTAL )"],"or": ["r", "EXP_RELACIONAL_FINAL", "( EXP_RELACIONAL_TOTAL )"],"&": ["r", "EXP_RELACIONAL_FINAL", "( EXP_RELACIONAL_TOTAL )"]}
     table.append(q157)
-    q158 = {
-        "inicio": ["r", "EXP_FINAL", "( EXP )"], "ponto": ["r", "EXP_FINAL", "( EXP )"],
-        ")": ["r", "EXP_FINAL", "( EXP )"], ";": ["r", "EXP_FINAL", "( EXP )"], "]": ["r", "EXP_FINAL", "( EXP )"],
-        "ateh": ["r", "EXP_FINAL", "( EXP )"], "or": ["r", "EXP_FINAL", "( EXP )"], "&": ["r", "EXP_FINAL", "( EXP )"],
-        "=": ["r", "EXP_FINAL", "( EXP )"], "<": ["r", "EXP_FINAL", "( EXP )"], "<=": ["r", "EXP_FINAL", "( EXP )"],
-        ">": ["r", "EXP_FINAL", "( EXP )"], ">=": ["r", "EXP_FINAL", "( EXP )"], "<>": ["r", "EXP_FINAL", "( EXP )"],
-        "**": ["r", "EXP_FINAL", "( EXP )"], "+": ["r", "EXP_FINAL", "( EXP )"], "-": ["r", "EXP_FINAL", "( EXP )"],
-        "*": ["r", "EXP_FINAL", "( EXP )"], "/": ["r", "EXP_FINAL", "( EXP )"], "%": ["r", "EXP_FINAL", "( EXP )"]}
+    q158 = {"inicio": ["r", "EXP_FINAL", "( EXP )"], "ponto": ["r", "EXP_FINAL", "( EXP )"],")": ["r", "EXP_FINAL", "( EXP )"], ";": ["r", "EXP_FINAL", "( EXP )"], "]": ["r", "EXP_FINAL", "( EXP )"],"ateh": ["r", "EXP_FINAL", "( EXP )"], "or": ["r", "EXP_FINAL", "( EXP )"], "&": ["r", "EXP_FINAL", "( EXP )"],"=": ["r", "EXP_FINAL", "( EXP )"], "<": ["r", "EXP_FINAL", "( EXP )"], "<=": ["r", "EXP_FINAL", "( EXP )"],">": ["r", "EXP_FINAL", "( EXP )"], ">=": ["r", "EXP_FINAL", "( EXP )"], "<>": ["r", "EXP_FINAL", "( EXP )"],"**": ["r", "EXP_FINAL", "( EXP )"], "+": ["r", "EXP_FINAL", "( EXP )"], "-": ["r", "EXP_FINAL", "( EXP )"],"*": ["r", "EXP_FINAL", "( EXP )"], "/": ["r", "EXP_FINAL", "( EXP )"], "%": ["r", "EXP_FINAL", "( EXP )"]}
     table.append(q158)
-    q159 = {
-        "inicio": ["r", "EXP_RELACIONAL_SIMPLES", "EXP RELACIONAIS EXP"],
-        ")": ["r", "EXP_RELACIONAL_SIMPLES", "EXP RELACIONAIS EXP"],
-        "or": ["r", "EXP_RELACIONAL_SIMPLES", "EXP RELACIONAIS EXP"],
-        "&": ["r", "EXP_RELACIONAL_SIMPLES", "EXP RELACIONAIS EXP"]}
+    q159 = {"inicio": ["r", "EXP_RELACIONAL_SIMPLES", "EXP RELACIONAIS EXP"],")": ["r", "EXP_RELACIONAL_SIMPLES", "EXP RELACIONAIS EXP"],"or": ["r", "EXP_RELACIONAL_SIMPLES", "EXP RELACIONAIS EXP"],"&": ["r", "EXP_RELACIONAL_SIMPLES", "EXP RELACIONAIS EXP"]}
     table.append(q159)
-    q160 = {
-        "inicio": ["r", "EXP", "EXP_N2 SOMA_SUB EXP"], "ponto": ["r", "EXP", "EXP_N2 SOMA_SUB EXP"],
-        ")": ["r", "EXP", "EXP_N2 SOMA_SUB EXP"], ";": ["r", "EXP", "EXP_N2 SOMA_SUB EXP"],
-        "]": ["r", "EXP", "EXP_N2 SOMA_SUB EXP"], "ateh": ["r", "EXP", "EXP_N2 SOMA_SUB EXP"],
-        "or": ["r", "EXP", "EXP_N2 SOMA_SUB EXP"], "&": ["r", "EXP", "EXP_N2 SOMA_SUB EXP"],
-        "=": ["r", "EXP", "EXP_N2 SOMA_SUB EXP"], "<": ["r", "EXP", "EXP_N2 SOMA_SUB EXP"],
-        "<=": ["r", "EXP", "EXP_N2 SOMA_SUB EXP"], ">": ["r", "EXP", "EXP_N2 SOMA_SUB EXP"],
-        ">=": ["r", "EXP", "EXP_N2 SOMA_SUB EXP"], "<>": ["r", "EXP", "EXP_N2 SOMA_SUB EXP"]}
+    q160 = {"inicio": ["r", "EXP", "EXP_N2 SOMA_SUB EXP"], "ponto": ["r", "EXP", "EXP_N2 SOMA_SUB EXP"],")": ["r", "EXP", "EXP_N2 SOMA_SUB EXP"], ";": ["r", "EXP", "EXP_N2 SOMA_SUB EXP"],"]": ["r", "EXP", "EXP_N2 SOMA_SUB EXP"], "ateh": ["r", "EXP", "EXP_N2 SOMA_SUB EXP"],"or": ["r", "EXP", "EXP_N2 SOMA_SUB EXP"], "&": ["r", "EXP", "EXP_N2 SOMA_SUB EXP"],"=": ["r", "EXP", "EXP_N2 SOMA_SUB EXP"], "<": ["r", "EXP", "EXP_N2 SOMA_SUB EXP"],"<=": ["r", "EXP", "EXP_N2 SOMA_SUB EXP"], ">": ["r", "EXP", "EXP_N2 SOMA_SUB EXP"],">=": ["r", "EXP", "EXP_N2 SOMA_SUB EXP"], "<>": ["r", "EXP", "EXP_N2 SOMA_SUB EXP"]}
     table.append(q160)
-    q161 = {
-        "inicio": ["r", "EXP_N2", "EXP_N3 MULTI_DIV_REST EXP_N2"],
-        "ponto": ["r", "EXP_N2", "EXP_N3 MULTI_DIV_REST EXP_N2"], ")": ["r", "EXP_N2", "EXP_N3 MULTI_DIV_REST EXP_N2"],
-        ";": ["r", "EXP_N2", "EXP_N3 MULTI_DIV_REST EXP_N2"], "]": ["r", "EXP_N2", "EXP_N3 MULTI_DIV_REST EXP_N2"],
-        "ateh": ["r", "EXP_N2", "EXP_N3 MULTI_DIV_REST EXP_N2"], "or": ["r", "EXP_N2", "EXP_N3 MULTI_DIV_REST EXP_N2"],
-        "&": ["r", "EXP_N2", "EXP_N3 MULTI_DIV_REST EXP_N2"], "=": ["r", "EXP_N2", "EXP_N3 MULTI_DIV_REST EXP_N2"],
-        "<": ["r", "EXP_N2", "EXP_N3 MULTI_DIV_REST EXP_N2"], "<=": ["r", "EXP_N2", "EXP_N3 MULTI_DIV_REST EXP_N2"],
-        ">": ["r", "EXP_N2", "EXP_N3 MULTI_DIV_REST EXP_N2"], ">=": ["r", "EXP_N2", "EXP_N3 MULTI_DIV_REST EXP_N2"],
-        "<>": ["r", "EXP_N2", "EXP_N3 MULTI_DIV_REST EXP_N2"], "+": ["r", "EXP_N2", "EXP_N3 MULTI_DIV_REST EXP_N2"],
-        "-": ["r", "EXP_N2", "EXP_N3 MULTI_DIV_REST EXP_N2"]}
+    q161 = {"inicio": ["r", "EXP_N2", "EXP_N3 MULTI_DIV_REST EXP_N2"],"ponto": ["r", "EXP_N2", "EXP_N3 MULTI_DIV_REST EXP_N2"], ")": ["r", "EXP_N2", "EXP_N3 MULTI_DIV_REST EXP_N2"],";": ["r", "EXP_N2", "EXP_N3 MULTI_DIV_REST EXP_N2"], "]": ["r", "EXP_N2", "EXP_N3 MULTI_DIV_REST EXP_N2"],"ateh": ["r", "EXP_N2", "EXP_N3 MULTI_DIV_REST EXP_N2"], "or": ["r", "EXP_N2", "EXP_N3 MULTI_DIV_REST EXP_N2"],"&": ["r", "EXP_N2", "EXP_N3 MULTI_DIV_REST EXP_N2"], "=": ["r", "EXP_N2", "EXP_N3 MULTI_DIV_REST EXP_N2"],"<": ["r", "EXP_N2", "EXP_N3 MULTI_DIV_REST EXP_N2"], "<=": ["r", "EXP_N2", "EXP_N3 MULTI_DIV_REST EXP_N2"], ">": ["r", "EXP_N2", "EXP_N3 MULTI_DIV_REST EXP_N2"], ">=": ["r", "EXP_N2", "EXP_N3 MULTI_DIV_REST EXP_N2"],"<>": ["r", "EXP_N2", "EXP_N3 MULTI_DIV_REST EXP_N2"], "+": ["r", "EXP_N2", "EXP_N3 MULTI_DIV_REST EXP_N2"],"-": ["r", "EXP_N2", "EXP_N3 MULTI_DIV_REST EXP_N2"]}
     table.append(q161)
-    q162 = {
-        "inicio": ["r", "EXP_N3", "EXP_FINAL ** EXP_N3"], "ponto": ["r", "EXP_N3", "EXP_FINAL ** EXP_N3"],
-        ")": ["r", "EXP_N3", "EXP_FINAL ** EXP_N3"], ";": ["r", "EXP_N3", "EXP_FINAL ** EXP_N3"],
-        "]": ["r", "EXP_N3", "EXP_FINAL ** EXP_N3"], "ateh": ["r", "EXP_N3", "EXP_FINAL ** EXP_N3"],
-        "or": ["r", "EXP_N3", "EXP_FINAL ** EXP_N3"], "&": ["r", "EXP_N3", "EXP_FINAL ** EXP_N3"],
-        "=": ["r", "EXP_N3", "EXP_FINAL ** EXP_N3"], "<": ["r", "EXP_N3", "EXP_FINAL ** EXP_N3"],
-        "<=": ["r", "EXP_N3", "EXP_FINAL ** EXP_N3"], ">": ["r", "EXP_N3", "EXP_FINAL ** EXP_N3"],
-        ">=": ["r", "EXP_N3", "EXP_FINAL ** EXP_N3"], "<>": ["r", "EXP_N3", "EXP_FINAL ** EXP_N3"],
-        "+": ["r", "EXP_N3", "EXP_FINAL ** EXP_N3"], "-": ["r", "EXP_N3", "EXP_FINAL ** EXP_N3"],
-        "*": ["r", "EXP_N3", "EXP_FINAL ** EXP_N3"], "/": ["r", "EXP_N3", "EXP_FINAL ** EXP_N3"],
-        "%": ["r", "EXP_N3", "EXP_FINAL ** EXP_N3"]}
+    q162 = {"inicio": ["r", "EXP_N3", "EXP_FINAL ** EXP_N3"], "ponto": ["r", "EXP_N3", "EXP_FINAL ** EXP_N3"],")": ["r", "EXP_N3", "EXP_FINAL ** EXP_N3"], ";": ["r", "EXP_N3", "EXP_FINAL ** EXP_N3"],"]": ["r", "EXP_N3", "EXP_FINAL ** EXP_N3"], "ateh": ["r", "EXP_N3", "EXP_FINAL ** EXP_N3"],"or": ["r", "EXP_N3", "EXP_FINAL ** EXP_N3"], "&": ["r", "EXP_N3", "EXP_FINAL ** EXP_N3"],"=": ["r", "EXP_N3", "EXP_FINAL ** EXP_N3"], "<": ["r", "EXP_N3", "EXP_FINAL ** EXP_N3"],"<=": ["r", "EXP_N3", "EXP_FINAL ** EXP_N3"], ">": ["r", "EXP_N3", "EXP_FINAL ** EXP_N3"],">=": ["r", "EXP_N3", "EXP_FINAL ** EXP_N3"], "<>": ["r", "EXP_N3", "EXP_FINAL ** EXP_N3"],"+": ["r", "EXP_N3", "EXP_FINAL ** EXP_N3"], "-": ["r", "EXP_N3", "EXP_FINAL ** EXP_N3"],"*": ["r", "EXP_N3", "EXP_FINAL ** EXP_N3"], "/": ["r", "EXP_N3", "EXP_FINAL ** EXP_N3"],"%": ["r", "EXP_N3", "EXP_FINAL ** EXP_N3"]}
     table.append(q162)
-    q163 = {
-        "id": ["r", "SINAL", "ε"], "(": ["s", 95], "-": ["s", 87], "numero_inteiro": ["r", "SINAL", "ε"],
-        "numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 175], "EXP_N2": ["d", 83], "EXP_N3": ["d", 84],
-        "EXP_FINAL": ["d", 85], "SINAL": ["d", 86]}
+    q163 = {"id": ["r", "SINAL", "ε"], "(": ["s", 95], "-": ["s", 87], "numero_inteiro": ["r", "SINAL", "ε"],"numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 175], "EXP_N2": ["d", 83], "EXP_N3": ["d", 84],"EXP_FINAL": ["d", 85], "SINAL": ["d", 86]}
     table.append(q163)
-    q164 = {
-        ")": ["s", 176]}
+    q164 = {")": ["s", 176]}
     table.append(q164)
-    q165 = {
-        "fim": ["s", 177]}
+    q165 = {"fim": ["s", 177]}
     table.append(q165)
-    q166 = {
-        "ateh": ["s", 178]}
+    q166 = {"ateh": ["s", 178]}
     table.append(q166)
-    q167 = {
-        "ponto": ["r", "CONCATENAR_LEIA", "id ; CONCATENAR_LEIA"]}
+    q167 = {"ponto": ["r", "CONCATENAR_LEIA", "id ; CONCATENAR_LEIA"]}
     table.append(q167)
-    q168 = {
-        "]": ["s", 179]}
+    q168 = {"]": ["s", 179]}
     table.append(q168)
-    q169 = {
-        "ponto": ["r", "LISTA_ESCREVA", "string ; LISTA_ESCREVA"]}
+    q169 = {"ponto": ["r", "LISTA_ESCREVA", "string ; LISTA_ESCREVA"]}
     table.append(q169)
-    q170 = {
-        "ponto": ["r", "LISTA_ESCREVA", "EXP ; LISTA_ESCREVA"]}
+    q170 = {"ponto": ["r", "LISTA_ESCREVA", "EXP ; LISTA_ESCREVA"]}
     table.append(q170)
-    q171 = {
-        "ponto": ["r", "RECEBA", "receba ( EXP )"]}
+    q171 = {"ponto": ["r", "RECEBA", "receba ( EXP )"]}
     table.append(q171)
-    q172 = {
-        "vet": ["s", 39], "inteiro": ["r", "VETOR", "ε"], "real": ["r", "VETOR", "ε"], "PARAMETROS": ["d", 180],
-        "VETOR": ["d", 38]}
+    q172 = {"vet": ["s", 39], "inteiro": ["r", "VETOR", "ε"], "real": ["r", "VETOR", "ε"], "PARAMETROS": ["d", 180],"VETOR": ["d", 38]}
     table.append(q172)
-    q173 = {
-        ")": ["r", "CONCATENAR_EXP", "EXP ; CONCATENAR_EXP"]}
+    q173 = {")": ["r", "CONCATENAR_EXP", "EXP ; CONCATENAR_EXP"]}
     table.append(q173)
-    q174 = {
-        "fim": ["r", "BLOCO_SENAO", "ε"], "id": ["r", "BLOCO_SENAO", "ε"], "receba": ["r", "BLOCO_SENAO", "ε"],
-        "escreva": ["r", "BLOCO_SENAO", "ε"], "leia": ["r", "BLOCO_SENAO", "ε"], "para": ["r", "BLOCO_SENAO", "ε"],
-        "enquanto": ["r", "BLOCO_SENAO", "ε"], "se": ["r", "BLOCO_SENAO", "ε"], "senao": ["s", 182],
-        "pare": ["r", "BLOCO_SENAO", "ε"], "BLOCO_SENAO": ["d", 181]}
+    q174 = {"fim": ["r", "BLOCO_SENAO", "ε"], "id": ["r", "BLOCO_SENAO", "ε"], "receba": ["r", "BLOCO_SENAO", "ε"],"escreva": ["r", "BLOCO_SENAO", "ε"], "leia": ["r", "BLOCO_SENAO", "ε"], "para": ["r", "BLOCO_SENAO", "ε"],"enquanto": ["r", "BLOCO_SENAO", "ε"], "se": ["r", "BLOCO_SENAO", "ε"], "senao": ["s", 182],"pare": ["r", "BLOCO_SENAO", "ε"], "BLOCO_SENAO": ["d", 181]}
     table.append(q174)
-    q175 = {
-        "]": ["s", 183]}
+    q175 = {"]": ["s", 183]}
     table.append(q175)
-    q176 = {
-        "inicio": ["r", "EXP_FINAL", "- ( EXP )"], "ponto": ["r", "EXP_FINAL", "- ( EXP )"],
-        ")": ["r", "EXP_FINAL", "- ( EXP )"], ";": ["r", "EXP_FINAL", "- ( EXP )"],
-        "]": ["r", "EXP_FINAL", "- ( EXP )"], "ateh": ["r", "EXP_FINAL", "- ( EXP )"],
-        "or": ["r", "EXP_FINAL", "- ( EXP )"], "&": ["r", "EXP_FINAL", "- ( EXP )"],
-        "=": ["r", "EXP_FINAL", "- ( EXP )"], "<": ["r", "EXP_FINAL", "- ( EXP )"],
-        "<=": ["r", "EXP_FINAL", "- ( EXP )"], ">": ["r", "EXP_FINAL", "- ( EXP )"],
-        ">=": ["r", "EXP_FINAL", "- ( EXP )"], "<>": ["r", "EXP_FINAL", "- ( EXP )"],
-        "**": ["r", "EXP_FINAL", "- ( EXP )"], "+": ["r", "EXP_FINAL", "- ( EXP )"],
-        "-": ["r", "EXP_FINAL", "- ( EXP )"], "*": ["r", "EXP_FINAL", "- ( EXP )"],
-        "/": ["r", "EXP_FINAL", "- ( EXP )"], "%": ["r", "EXP_FINAL", "- ( EXP )"]}
+    q176 = {"inicio": ["r", "EXP_FINAL", "- ( EXP )"], "ponto": ["r", "EXP_FINAL", "- ( EXP )"],")": ["r", "EXP_FINAL", "- ( EXP )"], ";": ["r", "EXP_FINAL", "- ( EXP )"],"]": ["r", "EXP_FINAL", "- ( EXP )"], "ateh": ["r", "EXP_FINAL", "- ( EXP )"],"or": ["r", "EXP_FINAL", "- ( EXP )"], "&": ["r", "EXP_FINAL", "- ( EXP )"],"=": ["r", "EXP_FINAL", "- ( EXP )"], "<": ["r", "EXP_FINAL", "- ( EXP )"],"<=": ["r", "EXP_FINAL", "- ( EXP )"], ">": ["r", "EXP_FINAL", "- ( EXP )"],">=": ["r", "EXP_FINAL", "- ( EXP )"], "<>": ["r", "EXP_FINAL", "- ( EXP )"],"**": ["r", "EXP_FINAL", "- ( EXP )"], "+": ["r", "EXP_FINAL", "- ( EXP )"],"-": ["r", "EXP_FINAL", "- ( EXP )"], "*": ["r", "EXP_FINAL", "- ( EXP )"],"/": ["r", "EXP_FINAL", "- ( EXP )"], "%": ["r", "EXP_FINAL", "- ( EXP )"]}
     table.append(q176)
-    q177 = {
-        "fim": ["r", "BLOCO_ENQUANTO", "enquanto EXP_RELACIONAL_TOTAL inicio BLOCO_COMANDO fim"],
-        "id": ["r", "BLOCO_ENQUANTO", "enquanto EXP_RELACIONAL_TOTAL inicio BLOCO_COMANDO fim"],
-        "receba": ["r", "BLOCO_ENQUANTO", "enquanto EXP_RELACIONAL_TOTAL inicio BLOCO_COMANDO fim"],
-        "escreva": ["r", "BLOCO_ENQUANTO", "enquanto EXP_RELACIONAL_TOTAL inicio BLOCO_COMANDO fim"],
-        "leia": ["r", "BLOCO_ENQUANTO", "enquanto EXP_RELACIONAL_TOTAL inicio BLOCO_COMANDO fim"],
-        "para": ["r", "BLOCO_ENQUANTO", "enquanto EXP_RELACIONAL_TOTAL inicio BLOCO_COMANDO fim"],
-        "enquanto": ["r", "BLOCO_ENQUANTO", "enquanto EXP_RELACIONAL_TOTAL inicio BLOCO_COMANDO fim"],
-        "se": ["r", "BLOCO_ENQUANTO", "enquanto EXP_RELACIONAL_TOTAL inicio BLOCO_COMANDO fim"],
-        "pare": ["r", "BLOCO_ENQUANTO", "enquanto EXP_RELACIONAL_TOTAL inicio BLOCO_COMANDO fim"]}
+    q177 = {"fim": ["r", "BLOCO_ENQUANTO", "enquanto EXP_RELACIONAL_TOTAL inicio BLOCO_COMANDO fim"],"id": ["r", "BLOCO_ENQUANTO", "enquanto EXP_RELACIONAL_TOTAL inicio BLOCO_COMANDO fim"],"receba": ["r", "BLOCO_ENQUANTO", "enquanto EXP_RELACIONAL_TOTAL inicio BLOCO_COMANDO fim"],"escreva": ["r", "BLOCO_ENQUANTO", "enquanto EXP_RELACIONAL_TOTAL inicio BLOCO_COMANDO fim"],"leia": ["r", "BLOCO_ENQUANTO", "enquanto EXP_RELACIONAL_TOTAL inicio BLOCO_COMANDO fim"],"para": ["r", "BLOCO_ENQUANTO", "enquanto EXP_RELACIONAL_TOTAL inicio BLOCO_COMANDO fim"],"enquanto": ["r", "BLOCO_ENQUANTO", "enquanto EXP_RELACIONAL_TOTAL inicio BLOCO_COMANDO fim"],"se": ["r", "BLOCO_ENQUANTO", "enquanto EXP_RELACIONAL_TOTAL inicio BLOCO_COMANDO fim"],"pare": ["r", "BLOCO_ENQUANTO", "enquanto EXP_RELACIONAL_TOTAL inicio BLOCO_COMANDO fim"]}
     table.append(q177)
-    q178 = {
-        "id": ["r", "SINAL", "ε"], "(": ["s", 95], "-": ["s", 87], "numero_inteiro": ["r", "SINAL", "ε"],
-        "numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 184], "EXP_N2": ["d", 83], "EXP_N3": ["d", 84],
-        "EXP_FINAL": ["d", 85], "SINAL": ["d", 86]}
+    q178 = {"id": ["r", "SINAL", "ε"], "(": ["s", 95], "-": ["s", 87], "numero_inteiro": ["r", "SINAL", "ε"],"numero_real": ["r", "SINAL", "ε"], "EXP": ["d", 184], "EXP_N2": ["d", 83], "EXP_N3": ["d", 84],"EXP_FINAL": ["d", 85], "SINAL": ["d", 86]}
     table.append(q178)
-    q179 = {
-        "ponto": ["r", "CONCATENAR_LEIA", "id [ EXP ]"], ";": ["s", 185]}
+    q179 = {"ponto": ["r", "CONCATENAR_LEIA", "id [ EXP ]"], ";": ["s", 185]}
     table.append(q179)
-    q180 = {
-        ")": ["r", "PARAMETROS", "VETOR TIPO : id ; PARAMETROS"]}
+    q180 = {")": ["r", "PARAMETROS", "VETOR TIPO : id ; PARAMETROS"]}
     table.append(q180)
-    q181 = {
-        "fim": ["r", "BLOCO_IF", "se EXP_RELACIONAL_TOTAL inicio BLOCO_COMANDO fim BLOCO_SENAO"],
-        "id": ["r", "BLOCO_IF", "se EXP_RELACIONAL_TOTAL inicio BLOCO_COMANDO fim BLOCO_SENAO"],
-        "receba": ["r", "BLOCO_IF", "se EXP_RELACIONAL_TOTAL inicio BLOCO_COMANDO fim BLOCO_SENAO"],
-        "escreva": ["r", "BLOCO_IF", "se EXP_RELACIONAL_TOTAL inicio BLOCO_COMANDO fim BLOCO_SENAO"],
-        "leia": ["r", "BLOCO_IF", "se EXP_RELACIONAL_TOTAL inicio BLOCO_COMANDO fim BLOCO_SENAO"],
-        "para": ["r", "BLOCO_IF", "se EXP_RELACIONAL_TOTAL inicio BLOCO_COMANDO fim BLOCO_SENAO"],
-        "enquanto": ["r", "BLOCO_IF", "se EXP_RELACIONAL_TOTAL inicio BLOCO_COMANDO fim BLOCO_SENAO"],
-        "se": ["r", "BLOCO_IF", "se EXP_RELACIONAL_TOTAL inicio BLOCO_COMANDO fim BLOCO_SENAO"],
-        "pare": ["r", "BLOCO_IF", "se EXP_RELACIONAL_TOTAL inicio BLOCO_COMANDO fim BLOCO_SENAO"]}
+    q181 = {"fim": ["r", "BLOCO_IF", "se EXP_RELACIONAL_TOTAL inicio BLOCO_COMANDO fim BLOCO_SENAO"],"id": ["r", "BLOCO_IF", "se EXP_RELACIONAL_TOTAL inicio BLOCO_COMANDO fim BLOCO_SENAO"],"receba": ["r", "BLOCO_IF", "se EXP_RELACIONAL_TOTAL inicio BLOCO_COMANDO fim BLOCO_SENAO"],"escreva": ["r", "BLOCO_IF", "se EXP_RELACIONAL_TOTAL inicio BLOCO_COMANDO fim BLOCO_SENAO"],"leia": ["r", "BLOCO_IF", "se EXP_RELACIONAL_TOTAL inicio BLOCO_COMANDO fim BLOCO_SENAO"],"para": ["r", "BLOCO_IF", "se EXP_RELACIONAL_TOTAL inicio BLOCO_COMANDO fim BLOCO_SENAO"],"enquanto": ["r", "BLOCO_IF", "se EXP_RELACIONAL_TOTAL inicio BLOCO_COMANDO fim BLOCO_SENAO"],"se": ["r", "BLOCO_IF", "se EXP_RELACIONAL_TOTAL inicio BLOCO_COMANDO fim BLOCO_SENAO"],"pare": ["r", "BLOCO_IF", "se EXP_RELACIONAL_TOTAL inicio BLOCO_COMANDO fim BLOCO_SENAO"]}
     table.append(q181)
-    q182 = {
-        "inicio": ["s", 186]}
+    q182 = {"inicio": ["s", 186]}
     table.append(q182)
-    q183 = {
-        "inicio": ["r", "EXP_FINAL", "SINAL id [ EXP ]"], "ponto": ["r", "EXP_FINAL", "SINAL id [ EXP ]"],
-        ")": ["r", "EXP_FINAL", "SINAL id [ EXP ]"], ";": ["r", "EXP_FINAL", "SINAL id [ EXP ]"],
-        "]": ["r", "EXP_FINAL", "SINAL id [ EXP ]"], "ateh": ["r", "EXP_FINAL", "SINAL id [ EXP ]"],
-        "or": ["r", "EXP_FINAL", "SINAL id [ EXP ]"], "&": ["r", "EXP_FINAL", "SINAL id [ EXP ]"],
-        "=": ["r", "EXP_FINAL", "SINAL id [ EXP ]"], "<": ["r", "EXP_FINAL", "SINAL id [ EXP ]"],
-        "<=": ["r", "EXP_FINAL", "SINAL id [ EXP ]"], ">": ["r", "EXP_FINAL", "SINAL id [ EXP ]"],
-        ">=": ["r", "EXP_FINAL", "SINAL id [ EXP ]"], "<>": ["r", "EXP_FINAL", "SINAL id [ EXP ]"],
-        "**": ["r", "EXP_FINAL", "SINAL id [ EXP ]"], "+": ["r", "EXP_FINAL", "SINAL id [ EXP ]"],
-        "-": ["r", "EXP_FINAL", "SINAL id [ EXP ]"], "*": ["r", "EXP_FINAL", "SINAL id [ EXP ]"],
-        "/": ["r", "EXP_FINAL", "SINAL id [ EXP ]"], "%": ["r", "EXP_FINAL", "SINAL id [ EXP ]"]}
+    q183 = {"inicio": ["r", "EXP_FINAL", "SINAL id [ EXP ]"], "ponto": ["r", "EXP_FINAL", "SINAL id [ EXP ]"],")": ["r", "EXP_FINAL", "SINAL id [ EXP ]"], ";": ["r", "EXP_FINAL", "SINAL id [ EXP ]"],"]": ["r", "EXP_FINAL", "SINAL id [ EXP ]"], "ateh": ["r", "EXP_FINAL", "SINAL id [ EXP ]"],"or": ["r", "EXP_FINAL", "SINAL id [ EXP ]"], "&": ["r", "EXP_FINAL", "SINAL id [ EXP ]"],"=": ["r", "EXP_FINAL", "SINAL id [ EXP ]"], "<": ["r", "EXP_FINAL", "SINAL id [ EXP ]"],"<=": ["r", "EXP_FINAL", "SINAL id [ EXP ]"], ">": ["r", "EXP_FINAL", "SINAL id [ EXP ]"],">=": ["r", "EXP_FINAL", "SINAL id [ EXP ]"], "<>": ["r", "EXP_FINAL", "SINAL id [ EXP ]"],"**": ["r", "EXP_FINAL", "SINAL id [ EXP ]"], "+": ["r", "EXP_FINAL", "SINAL id [ EXP ]"],"-": ["r", "EXP_FINAL", "SINAL id [ EXP ]"], "*": ["r", "EXP_FINAL", "SINAL id [ EXP ]"],"/": ["r", "EXP_FINAL", "SINAL id [ EXP ]"], "%": ["r", "EXP_FINAL", "SINAL id [ EXP ]"]}
     table.append(q183)
-    q184 = {
-        "inicio": ["s", 187]}
+    q184 = {"inicio": ["s", 187]}
     table.append(q184)
-    q185 = {
-        "id": ["s", 91], "CONCATENAR_LEIA": ["d", 188]}
+    q185 = {"id": ["s", 91], "CONCATENAR_LEIA": ["d", 188]}
     table.append(q185)
-    q186 = {
-        "fim": ["r", "BLOCO_COMANDO", "ε"], "id": ["s", 52], "receba": ["s", 58], "escreva": ["s", 57],
-        "leia": ["s", 56], "para": ["s", 55], "enquanto": ["s", 54], "se": ["s", 53], "pare": ["s", 50],
-        "BLOCO_COMANDO": ["d", 189], "RECEBA": ["d", 51], "ESCREVA": ["d", 49], "LEIA": ["d", 48],
-        "BLOCO_ATEH": ["d", 47], "BLOCO_ENQUANTO": ["d", 46], "BLOCO_IF": ["d", 45], "CHAMADA_FUNC": ["d", 43],
-        "ATRIBUICAO": ["d", 44]}
+    q186 = {"fim": ["r", "BLOCO_COMANDO", "ε"], "id": ["s", 52], "receba": ["s", 58], "escreva": ["s", 57],"leia": ["s", 56], "para": ["s", 55], "enquanto": ["s", 54], "se": ["s", 53], "pare": ["s", 50],"BLOCO_COMANDO": ["d", 189], "RECEBA": ["d", 51], "ESCREVA": ["d", 49], "LEIA": ["d", 48],"BLOCO_ATEH": ["d", 47], "BLOCO_ENQUANTO": ["d", 46], "BLOCO_IF": ["d", 45], "CHAMADA_FUNC": ["d", 43],"ATRIBUICAO": ["d", 44]}
     table.append(q186)
-    q187 = {
-        "fim": ["r", "BLOCO_COMANDO", "ε"], "id": ["s", 52], "receba": ["s", 58], "escreva": ["s", 57],
-        "leia": ["s", 56], "para": ["s", 55], "enquanto": ["s", 54], "se": ["s", 53], "pare": ["s", 50],
-        "BLOCO_COMANDO": ["d", 190], "RECEBA": ["d", 51], "ESCREVA": ["d", 49], "LEIA": ["d", 48],
-        "BLOCO_ATEH": ["d", 47], "BLOCO_ENQUANTO": ["d", 46], "BLOCO_IF": ["d", 45], "CHAMADA_FUNC": ["d", 43],
-        "ATRIBUICAO": ["d", 44]}
+    q187 = {"fim": ["r", "BLOCO_COMANDO", "ε"], "id": ["s", 52], "receba": ["s", 58], "escreva": ["s", 57],"leia": ["s", 56], "para": ["s", 55], "enquanto": ["s", 54], "se": ["s", 53], "pare": ["s", 50],"BLOCO_COMANDO": ["d", 190], "RECEBA": ["d", 51], "ESCREVA": ["d", 49], "LEIA": ["d", 48],"BLOCO_ATEH": ["d", 47], "BLOCO_ENQUANTO": ["d", 46], "BLOCO_IF": ["d", 45], "CHAMADA_FUNC": ["d", 43],"ATRIBUICAO": ["d", 44]}
     table.append(q187)
-    q188 = {
-        "ponto": ["r", "CONCATENAR_LEIA", "id [ EXP ] ; CONCATENAR_LEIA"]}
+    q188 = {"ponto": ["r", "CONCATENAR_LEIA", "id [ EXP ] ; CONCATENAR_LEIA"]}
     table.append(q188)
-    q189 = {
-        "fim": ["s", 191]}
+    q189 = {"fim": ["s", 191]}
     table.append(q189)
-    q190 = {
-        "fim": ["s", 192]}
+    q190 = {"fim": ["s", 192]}
     table.append(q190)
-    q191 = {
-        "fim": ["r", "BLOCO_SENAO", "senao inicio BLOCO_COMANDO fim"],
-        "id": ["r", "BLOCO_SENAO", "senao inicio BLOCO_COMANDO fim"],
-        "receba": ["r", "BLOCO_SENAO", "senao inicio BLOCO_COMANDO fim"],
-        "escreva": ["r", "BLOCO_SENAO", "senao inicio BLOCO_COMANDO fim"],
-        "leia": ["r", "BLOCO_SENAO", "senao inicio BLOCO_COMANDO fim"],
-        "para": ["r", "BLOCO_SENAO", "senao inicio BLOCO_COMANDO fim"],
-        "enquanto": ["r", "BLOCO_SENAO", "senao inicio BLOCO_COMANDO fim"],
-        "se": ["r", "BLOCO_SENAO", "senao inicio BLOCO_COMANDO fim"],
-        "pare": ["r", "BLOCO_SENAO", "senao inicio BLOCO_COMANDO fim"]}
+    q191 = {"fim": ["r", "BLOCO_SENAO", "senao inicio BLOCO_COMANDO fim"],"id": ["r", "BLOCO_SENAO", "senao inicio BLOCO_COMANDO fim"],"receba": ["r", "BLOCO_SENAO", "senao inicio BLOCO_COMANDO fim"],"escreva": ["r", "BLOCO_SENAO", "senao inicio BLOCO_COMANDO fim"],"leia": ["r", "BLOCO_SENAO", "senao inicio BLOCO_COMANDO fim"],"para": ["r", "BLOCO_SENAO", "senao inicio BLOCO_COMANDO fim"],"enquanto": ["r", "BLOCO_SENAO", "senao inicio BLOCO_COMANDO fim"],"se": ["r", "BLOCO_SENAO", "senao inicio BLOCO_COMANDO fim"],"pare": ["r", "BLOCO_SENAO", "senao inicio BLOCO_COMANDO fim"]}
     table.append(q191)
-    q192 = {
-        "fim": ["r", "BLOCO_ATEH", "para id de EXP ateh EXP inicio BLOCO_COMANDO fim"],
-        "id": ["r", "BLOCO_ATEH", "para id de EXP ateh EXP inicio BLOCO_COMANDO fim"],
-        "receba": ["r", "BLOCO_ATEH", "para id de EXP ateh EXP inicio BLOCO_COMANDO fim"],
-        "escreva": ["r", "BLOCO_ATEH", "para id de EXP ateh EXP inicio BLOCO_COMANDO fim"],
-        "leia": ["r", "BLOCO_ATEH", "para id de EXP ateh EXP inicio BLOCO_COMANDO fim"],
-        "para": ["r", "BLOCO_ATEH", "para id de EXP ateh EXP inicio BLOCO_COMANDO fim"],
-        "enquanto": ["r", "BLOCO_ATEH", "para id de EXP ateh EXP inicio BLOCO_COMANDO fim"],
-        "se": ["r", "BLOCO_ATEH", "para id de EXP ateh EXP inicio BLOCO_COMANDO fim"],
-        "pare": ["r", "BLOCO_ATEH", "para id de EXP ateh EXP inicio BLOCO_COMANDO fim"]}
+    q192 = {"fim": ["r", "BLOCO_ATEH", "para id de EXP ateh EXP inicio BLOCO_COMANDO fim"],"id": ["r", "BLOCO_ATEH", "para id de EXP ateh EXP inicio BLOCO_COMANDO fim"],"receba": ["r", "BLOCO_ATEH", "para id de EXP ateh EXP inicio BLOCO_COMANDO fim"],"escreva": ["r", "BLOCO_ATEH", "para id de EXP ateh EXP inicio BLOCO_COMANDO fim"],"leia": ["r", "BLOCO_ATEH", "para id de EXP ateh EXP inicio BLOCO_COMANDO fim"],"para": ["r", "BLOCO_ATEH", "para id de EXP ateh EXP inicio BLOCO_COMANDO fim"],"enquanto": ["r", "BLOCO_ATEH", "para id de EXP ateh EXP inicio BLOCO_COMANDO fim"],"se": ["r", "BLOCO_ATEH", "para id de EXP ateh EXP inicio BLOCO_COMANDO fim"],"pare": ["r", "BLOCO_ATEH", "para id de EXP ateh EXP inicio BLOCO_COMANDO fim"]}
     table.append(q192)
 
     return table
@@ -1503,9 +977,9 @@ def main():
         tabela = preencherTable()
         isCorrect = analisadorSintatico(TOKENS,tabela)
     if isCorrect:
-        print ("YES")
+        print("YES")
     else:
-        print ("NO")
+        print("NO")
 ############################################
 # FIM MAIN
 ############################################
