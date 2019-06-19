@@ -18,6 +18,28 @@ class Token:
 
     def getValor(self):
         return self.valor
+
+
+class Node:
+    def __init__(self, token : Token):
+        self.token = token
+        self.filhos = []
+
+    def setFilhos(self, filhos):
+        self.filhos = filhos
+
+    def setToken(self, token: Token):
+        self.token = token
+
+    def getFilhos(self):
+        return self.filhos
+
+    def getToken(self):
+        return self.token
+
+    def addFilho(self, node):
+        self.filhos.append(node)
+
 ############################################
 # DEFININDO AS CLASS - FIM
 ############################################
@@ -482,14 +504,12 @@ def printer(linha, coluna):
     print (linha , coluna)
 #VAI CRIAR OS TOKENS ESPECIFICOS PARA AS PALAVARS RESERVADAS DA LINGUAGEM
 def tokenCriator(token):
-    #OUTROS TOKENS RESERVADOS
     newToken = Token(token.lower(),token)
     TOKENS.append(newToken)
     return
 ############################################
 # ANALIZADOR LEXICO - FIM
 ############################################
-
 ############################################
 # ANALIZADOR SINTATICO - INICIO
 ############################################
@@ -512,7 +532,9 @@ def analisadorSintatico(tokens, tabela):
             #caso em que é feito o shift
             if action[0] == "s":
                 #empilha a entrada , o proximo estado e move para frente o ponteiro da entrada
-                pilha.append(entrada)
+                #Cria o novo node (é uma folha), com o token que deveria ser empilhado dentro dele
+                newNode = Node(entrada)
+                pilha.append(newNode)
                 pilha.append(action[1])
                 next += 1
             # caso em que é feito a redução
@@ -521,10 +543,19 @@ def analisadorSintatico(tokens, tabela):
                 vezes = 0
                 if action[2] != "ε":
                     vezes = action[2].count(" ") + 1
+
+                # criando o novo node que vai ser empilhado , com o seu token , sem valor associado
+                newToken = Token(action[1], "")
+                newNode = Node(newToken)
                 #retirnado os itens da pilha
                 for i in range(vezes * 2):
-                    pilha.pop()
-                #olhando o topo da pilha , para saber o desvio
+                    topo = pilha.pop()
+                    #Verifico se é um interio ou um node
+                    if not isinstance(topo, int):
+                        #adiciono esse node como filho do que será empilhado
+                        newNode.addFilho(topo)
+
+                #Olhando o topo da pilha, para saber o desvio
                 topo = pilha.pop()
                 pilha.append(topo)
                 #pegando a linha que informa o desvio
@@ -532,9 +563,10 @@ def analisadorSintatico(tokens, tabela):
                 #pegando o desvio
                 desvio = linha[action[1]]
                 if desvio[0] == "d":
-                #empilhando oque foi reduzido e o numero do estado que foi desviado
-                    pilha.append(action[1])
+                #empilhando o novo node e o numero do estado que foi desviado
+                    pilha.append(newNode)
                     pilha.append(desvio[1])
+
             #caso em que a entrada é aceita
             if action[0] == "acc":
                 return True
