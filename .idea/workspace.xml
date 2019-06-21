@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="863fdba9-29bb-42e8-8d47-7cd3c8c68968" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Compilador.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compilador.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,26 +15,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Compilador.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="12">
-              <caret line="525" column="26" lean-forward="true" selection-start-line="525" selection-start-column="26" selection-end-line="525" selection-end-column="26" />
-              <folding>
-                <element signature="e#1074#1376#0" />
-                <element signature="e#1736#1898#0" />
-                <element signature="e#1990#4620#0" />
-                <element signature="e#4701#6345#0" />
-                <element signature="e#6522#8046#0" />
-                <element signature="e#8115#8710#0" />
-                <element signature="e#8849#10314#0" />
-                <element signature="e#10395#11706#0" />
-                <element signature="e#11794#12305#0" />
-                <element signature="e#12370#13106#0" />
-                <element signature="e#13204#14499#0" />
-                <element signature="e#14556#15222#0" />
-                <element signature="e#15300#17058#0" />
-                <element signature="e#17220#17991#0" />
-                <element signature="e#18061#18083#0" />
-                <element signature="e#18187#18293#0" />
-              </folding>
+            <state relative-caret-position="773">
+              <caret line="1065" column="6" selection-start-line="1065" selection-start-column="6" selection-end-line="1065" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -63,8 +44,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
       <pane id="Scope" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="RunDashboard">
@@ -117,26 +98,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Compilador.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12">
-          <caret line="525" column="26" lean-forward="true" selection-start-line="525" selection-start-column="26" selection-end-line="525" selection-end-column="26" />
-          <folding>
-            <element signature="e#1074#1376#0" />
-            <element signature="e#1736#1898#0" />
-            <element signature="e#1990#4620#0" />
-            <element signature="e#4701#6345#0" />
-            <element signature="e#6522#8046#0" />
-            <element signature="e#8115#8710#0" />
-            <element signature="e#8849#10314#0" />
-            <element signature="e#10395#11706#0" />
-            <element signature="e#11794#12305#0" />
-            <element signature="e#12370#13106#0" />
-            <element signature="e#13204#14499#0" />
-            <element signature="e#14556#15222#0" />
-            <element signature="e#15300#17058#0" />
-            <element signature="e#17220#17991#0" />
-            <element signature="e#18061#18083#0" />
-            <element signature="e#18187#18293#0" />
-          </folding>
+        <state relative-caret-position="773">
+          <caret line="1065" column="6" selection-start-line="1065" selection-start-column="6" selection-end-line="1065" selection-end-column="6" />
         </state>
       </provider>
     </entry>

@@ -21,9 +21,11 @@ class Token:
 
 
 class Node:
-    def __init__(self, token : Token):
+    def __init__(self, token : Token, pai):
         self.token = token
         self.filhos = []
+        self.visitado = False
+        self.pai = pai
 
     def setFilhos(self, filhos):
         self.filhos = filhos
@@ -513,17 +515,20 @@ def tokenCriator(token):
 ############################################
 # ANALIZADOR SINTATICO - INICIO
 ############################################
+#VARIAVEIS GLOBAIS PARA O SINTATICO
+PILHA = [0]
 def analisadorSintatico(tokens, tabela):
     #apontador para a entrada corrente
     next = 0
     #inicializando a pilha
-    pilha = [0]
+    global PILHA
+    PILHA = [0]
     while (True):
         #pegando a entrada
         entrada = tokens[next]
         #olhando o topo da pilha
-        topo = pilha.pop()
-        pilha.append(topo)
+        topo = PILHA.pop()
+        PILHA.append(topo)
         try:
             #pegando a linha da tabela ( o estado )
             linha = tabela[topo]
@@ -533,9 +538,9 @@ def analisadorSintatico(tokens, tabela):
             if action[0] == "s":
                 #empilha a entrada , o proximo estado e move para frente o ponteiro da entrada
                 #Cria o novo node (é uma folha), com o token que deveria ser empilhado dentro dele
-                newNode = Node(entrada)
-                pilha.append(newNode)
-                pilha.append(action[1])
+                newNode = Node(entrada,None)
+                PILHA.append(newNode)
+                PILHA.append(action[1])
                 next += 1
             # caso em que é feito a redução
             if action[0] == "r":
@@ -546,26 +551,27 @@ def analisadorSintatico(tokens, tabela):
 
                 # criando o novo node que vai ser empilhado , com o seu token , sem valor associado
                 newToken = Token(action[1], "")
-                newNode = Node(newToken)
+                newNode = Node(newToken,None)
                 #retirnado os itens da pilha
                 for i in range(vezes * 2):
-                    topo = pilha.pop()
+                    topo = PILHA.pop()
                     #Verifico se é um interio ou um node
                     if not isinstance(topo, int):
                         #adiciono esse node como filho do que será empilhado
+                        topo.pai = newNode
                         newNode.addFilho(topo)
 
                 #Olhando o topo da pilha, para saber o desvio
-                topo = pilha.pop()
-                pilha.append(topo)
+                topo = PILHA.pop()
+                PILHA.append(topo)
                 #pegando a linha que informa o desvio
                 linha = tabela[topo]
                 #pegando o desvio
                 desvio = linha[action[1]]
                 if desvio[0] == "d":
                 #empilhando o novo node e o numero do estado que foi desviado
-                    pilha.append(newNode)
-                    pilha.append(desvio[1])
+                    PILHA.append(newNode)
+                    PILHA.append(desvio[1])
 
             #caso em que a entrada é aceita
             if action[0] == "acc":
@@ -968,6 +974,42 @@ def preencherTable():
 ############################################
 # ANALIZADOR SINTATICO - FIM
 ############################################
+
+############################################
+# ANALIZADOR SEMANTICO - INICIO
+############################################
+#LISTA DE VARIAVEIS GLOBAIS PARA O SEMANTICO
+TABELA_VARIAVEIS = []
+REDECLARACAO_VARIAVEL = False
+#FUNCAO QUE VAI RODAR A ARVORE EM GERAL
+def dfs(node : Node):
+    node.visitado = True
+    filhos = node.getFilhos()
+    if node.getToken().getTipo() == "BLOCO_VARIAVEIS":
+            DecVariavel(node)
+    for v in reversed(filhos):
+        if v.visitado == False:
+            dfs(v)
+
+#FUNCAO QUE RODA A DFS PARA TODO BLOCO DE VARIAVEIS            
+def DecVariavel(node : Node):
+    global TABELA_VARIAVEIS
+    global REDECLARACAO_VARIAVEL
+    node.visitado = True
+    filhos = node.getFilhos()
+    #CASO O NODE SEJA UM ID , ENTAO EU VERIFICO SE ELE JA EXISTE 
+    if node.getToken().getTipo() == "id":
+        if node.getToken().getValor() in TABELA_VARIAVEIS:
+            REDECLARACAO_VARIAVEL = True
+        else:
+            TABELA_VARIAVEIS.append(node.getToken().getValor())
+    for v in reversed(filhos):
+        if v.visitado == False:
+            DecVariavel(v)
+
+############################################
+# ANALIZADOR SEMANTICO - FIM
+############################################
 def processadorLinhas(str):
     linhas = []
     linha = ""
@@ -1000,6 +1042,7 @@ def processadorLinhas(str):
 def main():
     global LEXICA_CORRETA
     global  TOKENS
+    global PILHA
     input_str = sys.stdin.read()
     programa = processadorLinhas(input_str)
     if LEXICA_CORRETA:
@@ -1009,7 +1052,12 @@ def main():
         tabela = preencherTable()
         isCorrect = analisadorSintatico(TOKENS,tabela)
     if isCorrect:
-        print("YES")
+        #print("YES")
+        dfs(PILHA[1])
+        if REDECLARACAO_VARIAVEL:
+            print("YES")
+        else :
+            print("NO")
     else:
         print("NO")
 ############################################
