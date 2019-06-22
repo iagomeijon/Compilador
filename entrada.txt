@@ -1,8 +1,4 @@
-FUNCAO a(VET REAL:b): NULO.
-FUNCAO a(): INTEIRO.
 VAR
- INTEIRO: c.
- REAL: c.
 INICIO
- c <- b().
+a().
 FIM

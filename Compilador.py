@@ -980,32 +980,93 @@ def preencherTable():
 ############################################
 #LISTA DE VARIAVEIS GLOBAIS PARA O SEMANTICO
 TABELA_VARIAVEIS = []
+TABELA_FUNCOES = []
 REDECLARACAO_VARIAVEL = False
+VARIAVEL_N_DECLARADA = False
+REDECLARACAO_FUNCAO = False
+CONFLITO_VARIAVEL_FUNCAO = False
+FUNCAO_N_DECLARADA = False
 #FUNCAO QUE VAI RODAR A ARVORE EM GERAL
 def dfs(node : Node):
+    global VARIAVEL_N_DECLARADA
+    global TABELA_VARIAVEIS
+    global FUNCAO_N_DECLARADA
     node.visitado = True
     filhos = node.getFilhos()
+    #CHAMO A FUNCAO QUE TRATA OS RAMOS FILHOS DE BLOCO_VARIAVEIS (PREENCHE A TABELA DE DECLARACOES PARA VARIAVEIS E VERIFICA CONFLITOS)
     if node.getToken().getTipo() == "BLOCO_VARIAVEIS":
             DecVariavel(node)
+    #CHAMO A FUNCAO QUE TRATA OS RAMOS FILHO DE BLOCO_PROTOTIPO_DEC_FUNC (PREENCHE A TABELA DE DECLARACOES PARA FUNCOES E VERIFICA CONFLITOS)
+    elif node.getToken().getTipo() == "BLOCO_PROTOTIPO_DEC_FUNC":
+            BlockFuncao(node)
+    #VERIFICO SE UM ID DE UMA FUNCAO É CHAMADO SEM SER DECLARADO
+    elif node.getToken().getTipo() == "id" and node.pai.getToken().getTipo() == "CHAMADA_FUNC":
+            FUNCAO_N_DECLARADA = True
+    #VERIFICO SE UM ID DE UMA VARIAVEL É UTILIZADO SEM SER DECLARADO
+    elif node.getToken().getTipo() == "id":
+        if node.getToken().getValor not in TABELA_VARIAVEIS:
+            VARIAVEL_N_DECLARADA = True
+
+    if node.pai != None:
+        print(node.getToken().getTipo()," ",node.pai.getToken().getTipo())
+    else:
+        print(node.getToken().getTipo())
     for v in reversed(filhos):
         if v.visitado == False:
             dfs(v)
 
-#FUNCAO QUE RODA A DFS PARA TODO BLOCO DE VARIAVEIS            
+#FUNCAO QUE RODA A DFS PARA TODO BLOCO DE VARIAVEIS DO PROGRAMA GERAL            
 def DecVariavel(node : Node):
+    global TABELA_FUNCOES
+    global REDECLARACAO_FUNCAO
     global TABELA_VARIAVEIS
-    global REDECLARACAO_VARIAVEL
+    global CONFLITO_VARIAVEL_FUNCAO
     node.visitado = True
     filhos = node.getFilhos()
     #CASO O NODE SEJA UM ID , ENTAO EU VERIFICO SE ELE JA EXISTE 
     if node.getToken().getTipo() == "id":
+        #VERIFICO SE JA EXISTE UMA FUNCAO COM AQUELE NOME
+        if node.getToken().getValor() in TABELA_FUNCOES:
+            CONFLITO_VARIAVEL_FUNCAO = True
+        #VERIFICO SE JA EXITE VARIAVEL COM ESTE NOME
         if node.getToken().getValor() in TABELA_VARIAVEIS:
             REDECLARACAO_VARIAVEL = True
         else:
+            #GUARDO NA TABELA
             TABELA_VARIAVEIS.append(node.getToken().getValor())
+    if node.pai != None:
+        print(node.getToken().getTipo()," ",node.pai.getToken().getTipo(), " ", "func variavel")
+    else:
+        print(node.getToken().getTipo())
     for v in reversed(filhos):
         if v.visitado == False:
             DecVariavel(v)
+
+def BlockFuncao(node : Node):
+    global TABELA_FUNCOES
+    global REDECLARACAO_FUNCAO
+    global TABELA_VARIAVEIS
+    global CONFLITO_VARIAVEL_FUNCAO
+    node.visitado = True
+    filhos = node.getFilhos()
+    #CASO O NODE SEJA UM ID , ENTAO EU VERIFICO SE ELE JA EXISTE E SE ELE É UM ID DE FUNCAO OU PARAMETRO
+    if node.getToken().getTipo() == "id" and node.pai.getToken().getTipo() == "PROT_FUNC" :
+        #VERIFICO SE JA EXISTE VARIAVEL COM ESSE NOME
+        if node.getToken().getValor() in TABELA_VARIAVEIS:
+            CONFLITO_VARIAVEL_FUNCAO = True
+        #VERIFICO SE JA EXISTE FUNCAO COM O MESMO NOME
+        if node.getToken().getValor() in TABELA_FUNCOES:
+            REDECLARACAO_FUNCAO = True
+        else:
+            #GUARDO NA TABELA
+            TABELA_FUNCOES.append(node.getToken().getValor())
+    if node.pai != None:
+        print(node.getToken().getTipo()," ",node.pai.getToken().getTipo(), " ", "func")
+    else:
+        print(node.getToken().getTipo()," ", VEZ)
+    for v in reversed(filhos):
+        if v.visitado == False:
+            BlockFuncao(v)
 
 ############################################
 # ANALIZADOR SEMANTICO - FIM
@@ -1043,23 +1104,34 @@ def main():
     global LEXICA_CORRETA
     global  TOKENS
     global PILHA
+    #LENDO A ENTRADA DE UM ARQUIVO ATE EOF
     input_str = sys.stdin.read()
+    #QUEBRANDO A ENTRADA EM UMA LISTA DE LINHAS E VERIFICANDO SE TODOS OS CARACTERS SAO PERMITIDOS
     programa = processadorLinhas(input_str)
     if LEXICA_CORRETA:
+        #CASO TODOS OS CARACTER ESTEJAM DE ACORDO, ENTAO COMECO A ANALISE LEXICA DO ESTAO Q0
         q0(programa)
+        #INICO DO ANALIZADOR SINTATICO
         newToken = Token("$", "$")
         TOKENS.append(newToken)
         tabela = preencherTable()
         isCorrect = analisadorSintatico(TOKENS,tabela)
     if isCorrect:
-        #print("YES")
+        #print("ANALIZE SINTATICA CORRETA")
+        #INICIO ANALIZADOR SEMANTICO
         dfs(PILHA[1])
+        if FUNCAO_N_DECLARADA:
+            print("funcao nao declarada")
+        if VARIAVEL_N_DECLARADA:
+            print("variavel nao declarada")
+        if REDECLARACAO_FUNCAO:
+            print("redeclaracao de funcao")
         if REDECLARACAO_VARIAVEL:
-            print("YES")
-        else :
-            print("NO")
+            print("redeclaracao de variavel")
+        if CONFLITO_VARIAVEL_FUNCAO:
+            print("conflito funcao e variavel")
     else:
-        print("NO")
+        #print("APRESENTA ERROS SINTATICOS")
 ############################################
 # FIM MAIN
 ############################################
