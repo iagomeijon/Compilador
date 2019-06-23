@@ -1,4 +1,12 @@
+FUNCAO d(VET REAL:a): NULO.
+FUNCAO c(VET REAL:a): NULO
+VAR
+INTEIRO: b.
+INICIO
+b<-1.
+d().
+FIM
 VAR
 INICIO
-a().
+
 FIM

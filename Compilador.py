@@ -981,6 +981,7 @@ def preencherTable():
 #LISTA DE VARIAVEIS GLOBAIS PARA O SEMANTICO
 TABELA_VARIAVEIS = []
 TABELA_FUNCOES = []
+TABELA_VARIAVEIS_LOCAIS = []
 REDECLARACAO_VARIAVEL = False
 VARIAVEL_N_DECLARADA = False
 REDECLARACAO_FUNCAO = False
@@ -988,8 +989,13 @@ CONFLITO_VARIAVEL_FUNCAO = False
 FUNCAO_N_DECLARADA = False
 #FUNCAO QUE VAI RODAR A ARVORE EM GERAL
 def dfs(node : Node):
-    global VARIAVEL_N_DECLARADA
     global TABELA_VARIAVEIS
+    global TABELA_FUNCOES
+    global TABELA_VARIAVEIS_LOCAIS
+    global REDECLARACAO_VARIAVEL
+    global VARIAVEL_N_DECLARADA
+    global REDECLARACAO_FUNCAO
+    global CONFLITO_VARIAVEL_FUNCAO
     global FUNCAO_N_DECLARADA
     node.visitado = True
     filhos = node.getFilhos()
@@ -1001,26 +1007,26 @@ def dfs(node : Node):
             BlockFuncao(node)
     #VERIFICO SE UM ID DE UMA FUNCAO É CHAMADO SEM SER DECLARADO
     elif node.getToken().getTipo() == "id" and node.pai.getToken().getTipo() == "CHAMADA_FUNC":
+        if node.getToken().getValor() not in TABELA_FUNCOES:
             FUNCAO_N_DECLARADA = True
     #VERIFICO SE UM ID DE UMA VARIAVEL É UTILIZADO SEM SER DECLARADO
     elif node.getToken().getTipo() == "id":
-        if node.getToken().getValor not in TABELA_VARIAVEIS:
+        if node.getToken().getValor() not in TABELA_VARIAVEIS:
             VARIAVEL_N_DECLARADA = True
-
-    if node.pai != None:
-        print(node.getToken().getTipo()," ",node.pai.getToken().getTipo())
-    else:
-        print(node.getToken().getTipo())
+    #RODANDO A DFS PARA OS FILHOS
     for v in reversed(filhos):
         if v.visitado == False:
             dfs(v)
-
-#FUNCAO QUE RODA A DFS PARA TODO BLOCO DE VARIAVEIS DO PROGRAMA GERAL            
+#FUNCAO QUE RODA A DFS PARA TODO BLOCO DE VARIAVEIS DO PROGRAMA GERAL (MAIN E GLOBAIS)           
 def DecVariavel(node : Node):
-    global TABELA_FUNCOES
-    global REDECLARACAO_FUNCAO
     global TABELA_VARIAVEIS
+    global TABELA_FUNCOES
+    global TABELA_VARIAVEIS_LOCAIS
+    global REDECLARACAO_VARIAVEL
+    global VARIAVEL_N_DECLARADA
+    global REDECLARACAO_FUNCAO
     global CONFLITO_VARIAVEL_FUNCAO
+    global FUNCAO_N_DECLARADA
     node.visitado = True
     filhos = node.getFilhos()
     #CASO O NODE SEJA UM ID , ENTAO EU VERIFICO SE ELE JA EXISTE 
@@ -1034,23 +1040,27 @@ def DecVariavel(node : Node):
         else:
             #GUARDO NA TABELA
             TABELA_VARIAVEIS.append(node.getToken().getValor())
-    if node.pai != None:
-        print(node.getToken().getTipo()," ",node.pai.getToken().getTipo(), " ", "func variavel")
-    else:
-        print(node.getToken().getTipo())
     for v in reversed(filhos):
         if v.visitado == False:
             DecVariavel(v)
-
+#FUNCAO QUE RODA E TRATA TODOS OS PROTOTIPOS E QND ENCONTRA UMA FUNCAO REDIRECIONA
 def BlockFuncao(node : Node):
-    global TABELA_FUNCOES
-    global REDECLARACAO_FUNCAO
     global TABELA_VARIAVEIS
+    global TABELA_FUNCOES
+    global TABELA_VARIAVEIS_LOCAIS
+    global REDECLARACAO_VARIAVEL
+    global VARIAVEL_N_DECLARADA
+    global REDECLARACAO_FUNCAO
     global CONFLITO_VARIAVEL_FUNCAO
+    global FUNCAO_N_DECLARADA
     node.visitado = True
     filhos = node.getFilhos()
+    #ENCONTRADO UMA DECLARACAO DE FUNCAO , CRIO A LISTA DE VARIAVEIS LOCAIS E REDIRECIONO
+    if node.getToken().getTipo() == "DEC_FUNCAO":
+        TABELA_VARIAVEIS_LOCAIS = []
+        verificaFuncao(node)  
     #CASO O NODE SEJA UM ID , ENTAO EU VERIFICO SE ELE JA EXISTE E SE ELE É UM ID DE FUNCAO OU PARAMETRO
-    if node.getToken().getTipo() == "id" and node.pai.getToken().getTipo() == "PROT_FUNC" :
+    elif node.getToken().getTipo() == "id" and node.pai.getToken().getTipo() == "PROT_FUNC":
         #VERIFICO SE JA EXISTE VARIAVEL COM ESSE NOME
         if node.getToken().getValor() in TABELA_VARIAVEIS:
             CONFLITO_VARIAVEL_FUNCAO = True
@@ -1060,14 +1070,70 @@ def BlockFuncao(node : Node):
         else:
             #GUARDO NA TABELA
             TABELA_FUNCOES.append(node.getToken().getValor())
-    if node.pai != None:
-        print(node.getToken().getTipo()," ",node.pai.getToken().getTipo(), " ", "func")
-    else:
-        print(node.getToken().getTipo()," ", VEZ)
     for v in reversed(filhos):
         if v.visitado == False:
             BlockFuncao(v)
+#FUNCAO QUE FAZ TODAS AS VERIFICACOES E SETS PARA UMA FUNCAO NOVA
+def verificaFuncao(node : Node):
+    global TABELA_VARIAVEIS
+    global TABELA_FUNCOES
+    global TABELA_VARIAVEIS_LOCAIS
+    global REDECLARACAO_VARIAVEL
+    global VARIAVEL_N_DECLARADA
+    global REDECLARACAO_FUNCAO
+    global CONFLITO_VARIAVEL_FUNCAO
+    global FUNCAO_N_DECLARADA
+    node.visitado = True
+    filhos = node.getFilhos()
+    #SETANDO E VERIFICANDO O NOME DA FUNCAO NA TABELA DE NOMES DE FUNCOES/PROTOTIPO
+    if node.getToken().getTipo() == "id" and node.pai.getToken().getTipo() == "PROT_FUNC":
+          #VERIFICO SE JA EXISTE VARIAVEL COM ESSE NOME
+        if node.getToken().getValor() in TABELA_VARIAVEIS:
+            CONFLITO_VARIAVEL_FUNCAO = True
+        #VERIFICO SE JA EXISTE FUNCAO COM O MESMO NOME
+        if node.getToken().getValor() in TABELA_FUNCOES:
+            REDECLARACAO_FUNCAO = True
+        else:
+            #GUARDO NA TABELA GLOBAL DE NOME DE FUNCOES
+            TABELA_FUNCOES.append(node.getToken().getValor())
 
+    #VERIFICANDO OS PARAMETROS DA FUNCAO E FACO O SET DELES NA TABELA DE VARIAVEIS LOCAIS
+    elif node.getToken().getTipo() == "id" and node.pai.getToken().getTipo() == "PARAMETROS":
+        #VERIFICO SE JA EXISTE VARIAVEL COM ESSE NOME (GLOBAL)
+        if node.getToken().getValor() in TABELA_VARIAVEIS:
+            REDECLARACAO_VARIAVEL = True
+        #VERIFICO SE JA EXISTE FUNCAO COM O MESMO NOME (GLOBAL)
+        if node.getToken().getValor() in TABELA_FUNCOES:
+            CONFLITO_VARIAVEL_FUNCAO = True
+        #VERIFICO SE JA EXISTE OUTRA VARIAVEL LOCAL COM O MESMO NOME ( NO CASO PARAMETROS COM MESMO NOME)
+        if node.getToken().getValor() in TABELA_VARIAVEIS_LOCAIS: 
+            REDECLARACAO_VARIAVEL = True
+        else:
+            #GUARDO NA TABELA
+            TABELA_VARIAVEIS_LOCAIS.append(node.getToken().getValor())
+    #SETANDO E VERIFICANDO TODAS AS VARIAVEIS DECLARADAS NA FUNCAO (LOCAL)
+    elif node.getToken().getTipo() == "id" and node.pai.getToken().getTipo() == "CONCATENAR_ID":
+             #VERIFICO SE JA EXISTE UMA FUNCAO COM AQUELE NOME
+            if node.getToken().getValor() in TABELA_FUNCOES:
+                CONFLITO_VARIAVEL_FUNCAO = True
+             #VERIFICO SE JA EXITE VARIAVEL COM ESTE NOME GLOBAIS OU LOCAIS
+            if node.getToken().getValor() in TABELA_VARIAVEIS or node.getToken().getValor() in TABELA_VARIAVEIS_LOCAIS :
+                REDECLARACAO_VARIAVEL = True
+            else:
+                #GUARDO NA TABELA
+                TABELA_VARIAVEIS_LOCAIS.append(node.getToken().getValor())
+    #VERIFICO AS CHAMADAS DE FUNCAO REALIZADAS DENTRO DA FUNCAO
+    elif node.getToken().getTipo() == "id" and node.pai.getToken().getTipo() == "CHAMADA_FUNC":
+            if node.getToken().getValor() not in TABELA_FUNCOES:
+                FUNCAO_N_DECLARADA = True
+    #VERIFICO AS VARIAVEIS UTILIZADAS , SE ELAS ESTAO NA TABELA LOCAL OU GLOBAL
+    elif node.getToken().getTipo() == "id":
+        if node.getToken().getValor() not in TABELA_VARIAVEIS and  node.getToken().getValor() not in TABELA_VARIAVEIS_LOCAIS:
+            VARIAVEL_N_DECLARADA = True
+
+    for v in reversed(filhos):
+        if v.visitado == False:
+            verificaFuncao(v)
 ############################################
 # ANALIZADOR SEMANTICO - FIM
 ############################################
@@ -1117,7 +1183,6 @@ def main():
         tabela = preencherTable()
         isCorrect = analisadorSintatico(TOKENS,tabela)
     if isCorrect:
-        #print("ANALIZE SINTATICA CORRETA")
         #INICIO ANALIZADOR SEMANTICO
         dfs(PILHA[1])
         if FUNCAO_N_DECLARADA:
@@ -1130,8 +1195,6 @@ def main():
             print("redeclaracao de variavel")
         if CONFLITO_VARIAVEL_FUNCAO:
             print("conflito funcao e variavel")
-    else:
-        #print("APRESENTA ERROS SINTATICOS")
 ############################################
 # FIM MAIN
 ############################################
